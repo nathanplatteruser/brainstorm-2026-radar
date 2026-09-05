@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Brainstorm 2026 Denver — SettleUp Radar Scoreboard</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --panel: #1a2332;
+    --border: #2a3544;
+    --text: #e7ecf3;
+    --muted: #8b9bb4;
+    --accent: #5b9fd4;
+    --p0: #f0a020;
+    --p1: #5b9fd4;
+    --p2: #6b7c93;
+    --inb: #c084fc;
+    --self: #7a8a9a;
+    --danger: #e85d5d;
+    --yes: #3ecf8e;
+    --send: #fbbf24;
+    --hold: #fb923c;
+    --draft: #38bdf8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px 20px 60px;
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.45;
+  }
+  h1 { font-size: 1.45rem; font-weight: 650; margin: 0 0 6px; letter-spacing: -0.02em; }
+  .sub { color: var(--muted); font-size: 0.92rem; margin-bottom: 14px; }
+  .sub a { color: var(--accent); }
+  .note {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 14px;
+    font-size: 0.88rem; color: var(--muted);
+  }
+  .note strong { color: var(--text); }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 8px 0 0;
+    font-size: 0.82rem;
+  }
+  .legend span { white-space: nowrap; }
+  .pill {
+    display: inline-block; padding: 1px 8px; border-radius: 999px;
+    border: 1px solid var(--border); font-size: 0.75rem; font-weight: 600;
+  }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+  .stat {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 14px; font-size: 0.85rem;
+  }
+  .stat b { color: var(--accent); }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; align-items: center; }
+  .controls input, .controls select {
+    background: var(--panel); border: 1px solid var(--border); color: var(--text);
+    border-radius: 6px; padding: 8px 10px; font-size: 0.88rem;
+  }
+  .controls input { min-width: 220px; flex: 1; }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 0.82rem;
+    background: var(--panel); border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  th {
+    text-align: left; padding: 10px 10px; background: #121a24;
+    color: var(--muted); font-weight: 600; font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border); cursor: pointer; user-select: none;
+    white-space: nowrap; position: sticky; top: 0; z-index: 2;
+  }
+  th:hover { color: var(--text); }
+  th .sort-ind { opacity: 0.45; margin-left: 3px; }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(91,159,212,0.06); }
+  .name { font-weight: 600; white-space: nowrap; }
+  .org { max-width: 150px; }
+  .title { color: var(--muted); max-width: 160px; }
+  .score-col { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .score { font-weight: 700; font-size: 1.05rem; color: #fff; }
+  .score-denom { color: var(--muted); font-size: 0.8rem; }
+  .unscored { color: var(--danger); font-weight: 700; }
+  .row-unscored { background: rgba(232,93,93,0.08); }
+  .row-self { opacity: 0.72; }
+  .self-score { color: var(--muted); }
+  .tier-p0 { color: var(--p0); font-weight: 700; }
+  .tier-p1 { color: var(--p1); font-weight: 600; }
+  .tier-p2 { color: var(--p2); }
+  .tier-inb { color: var(--inb); font-weight: 600; }
+  .tier-self { color: var(--self); }
+  .inbound-yes { color: var(--yes); font-weight: 700; }
+  .tldr, .pros, .cons { color: var(--muted); max-width: 220px; font-size: 0.78rem; }
+  .intent { white-space: nowrap; font-size: 0.78rem; }
+  .status { max-width: 200px; font-size: 0.78rem; }
+  .next { max-width: 180px; font-size: 0.78rem; color: var(--muted); }
+  .st-sent { color: var(--yes); font-weight: 700; }
+  .st-sendnow { color: var(--send); font-weight: 700; }
+  .st-hold { color: var(--hold); font-weight: 600; }
+  .st-draft { color: var(--draft); font-weight: 600; }
+  .st-skip { color: var(--danger); }
+  .st-none { color: var(--muted); }
+  footer { margin-top: 20px; color: var(--muted); font-size: 0.8rem; }
+  #visible-count { color: var(--accent); font-weight: 600; }
+
+  @media (max-width: 720px) {
+    body { padding: 12px 10px 40px; font-size: 15px; }
+    h1 { font-size: 1.2rem; }
+    table { display: none !important; }
+    .cards { display: block !important; }
+    .card {
+      background: #1a2332; border: 1px solid #2a3544;
+      border-radius: 12px; padding: 14px; margin-bottom: 10px;
+      color: #e7ecf3;
+    }
+    .card .name { font-weight: 650; font-size: 1.05rem; }
+    .card .meta { color: #8b9bb4; font-size: 0.85rem; margin: 4px 0 8px; }
+    .card .row { margin: 4px 0; font-size: 0.9rem; }
+    .card .label { color: #8b9bb4; display: inline-block; min-width: 4.5rem; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; background:#2a3544; }
+  }
+  @media (min-width: 721px) { .cards { display: none; } }
+
+</style>
+</head>
+<body>
+  <p class="sub"><b>Mobile tip:</b> filter Score to 9–10 for target DMs. Auto-send = 9–10 only.</p>
+<h1>Brainstorm 2026 Denver — SettleUp Radar Scoreboard</h1>
+  <p class="sub">
+    SettleUp Collections letter-risk hunt · default sort Score/10 desc, then name ·
+    <a href="https://www.getbrainstorming.com/#/speakers" target="_blank" rel="noopener">getbrainstorming.com/#/speakers</a>
+    ·
+    <a href="https://whova.com/portal/webapp/wHydHQ8eVyTTnDjH7AKW/" target="_blank" rel="noopener">Whova portal</a>
+    · rebuilt 2026-09-05 ~3:15 PM CT (no Whova scrape)
+  </p>
+  <div class="note">
+    <strong>Send legend (CoS):</strong>
+    <div class="legend">
+      <span><span class="pill st-sendnow">9–10</span> auto-send Whova DM + Gmail only</span>
+      <span><span class="pill st-hold">8 / 7 / 6</span> HOLD for Nathan greenlight</span>
+      <span><span class="pill st-skip">≤2</span> skip / AUTO-SKIP vendors</span>
+      <span><strong>HARD BAN:</strong> no Dell / day-job branding — Platter Analytics / SettleUp only</span>
+    </div>
+    Rubric: <code>SCORING.md</code>. Sources merged: ATTACK-LIST · SPEAKER-LINEUP (81) · CONFERENCE-INBOUND · OUTBOUND-DRAFTS · MIKE-EMAIL-ATTENDEES. Whova attendees: not available (login wall).
+  </div>
+  <div class="stats">
+    <div class="stat">Radar people: <b>89</b></div>
+    <div class="stat">Scored: <b>88</b></div>
+    <div class="stat">P0 / P1 / P2 / INB: <b>20</b> / <b>30</b> / <b>32</b> / <b>6</b></div>
+    <div class="stat">Inbound YES: <b>10</b></div>
+    <div class="stat">SENT: <b>6</b></div>
+    <div class="stat">SEND NOW: <b>5</b></div>
+    <div class="stat">HOLD: <b>4</b></div>
+    <div class="stat">DRAFT: <b>2</b></div>
+    <div class="stat">SKIP: <b>25</b></div>
+    <div class="stat">Not contacted: <b>46</b></div>
+    <div class="stat">Showing: <b id="visible-count">89</b></div>
+  </div>
+  <div class="controls">
+    <input type="search" id="q" placeholder="Filter name / org / title / intent / status / why…" oninput="filterRows()"/>
+    <select id="tier" onchange="filterRows()">
+      <option value="">All tiers</option>
+      <option value="P0">P0</option>
+      <option value="P1">P1</option>
+      <option value="P2">P2</option>
+      <option value="INB">INB</option>
+      <option value="SELF">SELF</option>
+    </select>
+    <select id="inbound" onchange="filterRows()">
+      <option value="">Inbound: any</option>
+      <option value="YES">Inbound YES</option>
+      <option value="No">Inbound No</option>
+    </select>
+    <select id="status" onchange="filterRows()">
+      <option value="">Status: any</option>
+      <option value="sent">SENT</option>
+      <option value="send now">SEND NOW</option>
+      <option value="hold">HOLD</option>
+      <option value="draft">DRAFT</option>
+      <option value="skip">SKIP</option>
+      <option value="not contacted">Not contacted</option>
+    </select>
+  </div>
+  <div style="overflow-x:auto; max-height: 78vh;">
+  <table id="board">
+    <thead>
+      <tr>
+        <th data-col="0">Name <span class="sort-ind">↕</span></th>
+        <th data-col="1">Org <span class="sort-ind">↕</span></th>
+        <th data-col="2">Title <span class="sort-ind">↕</span></th>
+        <th data-col="3" data-default="1">Score/10 <span class="sort-ind">▼</span></th>
+        <th data-col="4">Intent <span class="sort-ind">↕</span></th>
+        <th data-col="5">Tier <span class="sort-ind">↕</span></th>
+        <th data-col="6">Why (TLDR) <span class="sort-ind">↕</span></th>
+        <th data-col="7">Pros <span class="sort-ind">↕</span></th>
+        <th data-col="8">Cons <span class="sort-ind">↕</span></th>
+        <th data-col="9">Inbound? <span class="sort-ind">↕</span></th>
+        <th data-col="10">Outreach status <span class="sort-ind">↕</span></th>
+        <th data-col="11">Next action <span class="sort-ind">↕</span></th>
+      </tr>
+    </thead>
+    <tbody>
+<tr class="score-9" data-score="9" data-tier="P0" data-name="chris taylor" data-status="send now (whova dm · score 9)" data-inbound="No">
+<td class="name">Chris Taylor</td>
+<td class="org">Key 2 Recovery</td>
+<td class="title">President</td>
+<td class="score-col" data-sort="9"><span class="score">9</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Owner who feels letter hallucination risk (9).</td>
+<td class="pros">Agency president; agentic AI risk panel = hallucination fear</td>
+<td class="cons">Risk-panel talk may stay theoretical</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
+<td class="next">Send Whova DM now (autonomy 9–10)</td>
+</tr>
+<tr class="score-9" data-score="9" data-tier="P0" data-name="dan medina" data-status="sent email 2026-09-05 ~3:13 pm ct" data-inbound="YES">
+<td class="name">Dan Medina</td>
+<td class="org">Harris &amp; Harris</td>
+<td class="title">Sr. Director of AI Applications &amp; Operational Effectiveness</td>
+<td class="score-col" data-sort="9"><span class="score">9</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Agency AI decision-maker = classic Pilot (9).</td>
+<td class="pros">Agency AI apps/ops director; Sandbox automation leader</td>
+<td class="cons">May already have internal AI stack</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-sent">SENT Email 2026-09-05 ~3:13 PM CT</span></td>
+<td class="next">Wait for reply / Sandbox demo fail-closed</td>
+</tr>
+<tr class="score-9" data-score="9" data-tier="P0" data-name="jim beck" data-status="send now (whova dm · score 9)" data-inbound="No">
+<td class="name">Jim Beck</td>
+<td class="org">MRS BPO</td>
+<td class="title">President and COO</td>
+<td class="score-col" data-sort="9"><span class="score">9</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Large BPO ops decision-maker for letter control (9).</td>
+<td class="pros">MRS BPO Pres/COO; ops + broken-system framing</td>
+<td class="cons">Large BPO may build in-house</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
+<td class="next">Send Whova DM now (autonomy 9–10)</td>
+</tr>
+<tr class="score-9" data-score="9" data-tier="P0" data-name="joann needleman" data-status="sent email 2026-09-05 ~3:13 pm ct" data-inbound="YES">
+<td class="name">Joann Needleman</td>
+<td class="org">Clark Hill PLC</td>
+<td class="title">Member and Leader Financial Services Regulatory Compliance</td>
+<td class="score-col" data-sort="9"><span class="score">9</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Counsel + sponsor = top Audit/Firm consult path (9).</td>
+<td class="pros">FS regulatory counsel; Sandbox sponsor; Audit/fail-closed narrative aligns</td>
+<td class="cons">Counsel cycles slow; may refer not buy</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-sent">SENT Email 2026-09-05 ~3:13 PM CT</span></td>
+<td class="next">Wait for reply / Capstone handshake</td>
+</tr>
+<tr class="score-9" data-score="9" data-tier="P0" data-name="juergen lunkwitz" data-status="sent linkedin 2026-09-05 ~2:21 pm ct" data-inbound="YES">
+<td class="name">Juergen Lunkwitz</td>
+<td class="org">Contract Callers</td>
+<td class="title">Director of Utility GenAI and Logistics</td>
+<td class="score-col" data-sort="9"><span class="score">9</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Warm inbound + agency AI ops = highest mutual Pilot path (9).</td>
+<td class="pros">Warm tea ask; agency AI/transform role; Sandbox co-lead; Pilot-natural</td>
+<td class="cons">Title variants across sources; confirm decision rights</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-sent">SENT LinkedIn 2026-09-05 ~2:21 PM CT</span></td>
+<td class="next">Wait for reply / onsite Thu Automate tea</td>
+</tr>
+<tr class="score-9" data-score="9" data-tier="P0" data-name="matthew maloney" data-status="send now (whova dm · score 9)" data-inbound="No">
+<td class="name">Matthew Maloney</td>
+<td class="org">First Financial Asset Management (FFAM360)</td>
+<td class="title">CEO/Chief Investment Officer</td>
+<td class="score-col" data-sort="9"><span class="score">9</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Debt buyer CEO = Firm/Audit economics (9).</td>
+<td class="pros">Debt buyer CEO/CIO; business-case economics</td>
+<td class="cons">Debt buyers vary on letter ownership vs agencies</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
+<td class="next">Send Whova DM now (autonomy 9–10)</td>
+</tr>
+<tr class="score-9" data-score="9" data-tier="P0" data-name="megan hebert" data-status="send now (whova dm · score 9)" data-inbound="No">
+<td class="name">Megan Hebert</td>
+<td class="org">Specialized Collection Systems, Inc. (SCS</td>
+<td class="title">President</td>
+<td class="score-col" data-sort="9"><span class="score">9</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Agency owner on roadmap = Pilot/Firm (9).</td>
+<td class="pros">Agency president; 90-day AI roadmap panel</td>
+<td class="cons">Owner time scarce onsite</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
+<td class="next">Send Whova DM now (autonomy 9–10)</td>
+</tr>
+<tr class="score-9" data-score="9" data-tier="P0" data-name="regina slowey" data-status="send now (whova dm · score 9)" data-inbound="No">
+<td class="name">Regina Slowey</td>
+<td class="org">Barron &amp; Newburger</td>
+<td class="title">President/CEO</td>
+<td class="score-col" data-sort="9"><span class="score">9</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Firm leader on Regulators panel = Firm/Audit needle (9).</td>
+<td class="pros">Collection counsel firm CEO; Reg F/FDCPA panel; buyer + referral</td>
+<td class="cons">Firm may prefer DIY counsel review</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
+<td class="next">Send Whova DM now (autonomy 9–10)</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="ari derman" data-status="sent (score 8 prior; no further fu w/o nathan)" data-inbound="No">
+<td class="name">Ari Derman</td>
+<td class="org">Clark Hill</td>
+<td class="title">Member</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Dispute sandbox + counsel = strong Audit framing (8).</td>
+<td class="pros">Dispute-queue moderator; Clark Hill counsel; letter/dispute = core product</td>
+<td class="cons">Counsel influence more than agency ops budget</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-sent">SENT (Score 8 prior; no further FU w/o Nathan)</span></td>
+<td class="next">No further follow-up without Nathan; Dispute session handshake OK</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="cathy fellabaum" data-status="not contacted" data-inbound="No">
+<td class="name">Cathy Fellabaum</td>
+<td class="org">Harvest Strategy Group, Inc.</td>
+<td class="title">Vice President, Recoveries</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Recoveries VP = ops Pilot buyer (8).</td>
+<td class="pros">VP Recoveries; ROI panel = Pilot worksheet</td>
+<td class="cons">Recoveries may not own compliance tooling</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P1" data-name="dennis barton" data-status="not contacted" data-inbound="No">
+<td class="name">Dennis Barton</td>
+<td class="org">Barton Law Group</td>
+<td class="title">Owner</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Counsel owner = Audit/Pilot influencer-buyer (8).</td>
+<td class="pros">Law group owner; Sandbox toolbox; Audit fit</td>
+<td class="cons">Small-firm budget vs big agencies</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="heath morgan" data-status="hold 8 (whova dm draft)" data-inbound="No">
+<td class="name">Heath Morgan</td>
+<td class="org">Martin Golden Lyons Watts Morgan</td>
+<td class="title">Partner</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Counsel-channel Audit buyer/influencer (8).</td>
+<td class="pros">Creditors-rights partner; same Regulators room</td>
+<td class="cons">Partner bandwidth; may be referral-only</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-hold">HOLD 8 (Whova DM draft)</span></td>
+<td class="next">Nathan greenlight before send</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="jacqueline wilson" data-status="hold 8 (whova dm draft)" data-inbound="No">
+<td class="name">Jacqueline Wilson</td>
+<td class="org">U.S. Bank National Association</td>
+<td class="title">Senior Corporate Counsel</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">First-party counsel who gates agency AI letters (8).</td>
+<td class="pros">Bank SC counsel; vendor-governance angle for agency letters</td>
+<td class="cons">Banks buy slowly; may push risk to agencies</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-hold">HOLD 8 (Whova DM draft)</span></td>
+<td class="next">Nathan greenlight before send</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P1" data-name="john erickson" data-status="not contacted" data-inbound="No">
+<td class="name">John Erickson</td>
+<td class="org">Credit Service International</td>
+<td class="title">President &amp; CEO</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Agency CEO business-case seat (8).</td>
+<td class="pros">Agency CEO; business-case panel</td>
+<td class="cons">Same as other agency CEOs — compete for time</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P1" data-name="jonathan goldberg" data-status="not contacted" data-inbound="No">
+<td class="name">Jonathan Goldberg</td>
+<td class="org">National Recovery Associates</td>
+<td class="title">President</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Agency president = Pilot path (8).</td>
+<td class="pros">Agency president; broken-system panel</td>
+<td class="cons">Bandwidth</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="katherine o&#x27;brien" data-status="hold 8 (whova dm draft)" data-inbound="No">
+<td class="name">Katherine O&#x27;Brien</td>
+<td class="org">UHG</td>
+<td class="title">General Counsel &amp; Chief Compliance Officer</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Compliance gatekeeper persona for letter gate (8).</td>
+<td class="pros">GC/CCO archetype; governance session = refuse-over-hallucinate story</td>
+<td class="cons">UHG may be outsized/long cycle vs Pilot</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-hold">HOLD 8 (Whova DM draft)</span></td>
+<td class="next">Nathan greenlight before send</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="kristyn leffler" data-status="not contacted" data-inbound="No">
+<td class="name">Kristyn Leffler</td>
+<td class="org">Resurgent Capital Services</td>
+<td class="title">Vice President of Strategy Integration and Analytics</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Debt-buyer strategy seat for pilot gate (8).</td>
+<td class="pros">Resurgent VP strategy/analytics; placed inventory angle</td>
+<td class="cons">Analytics title may not own compliance letters</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="leslie bender" data-status="not contacted" data-inbound="No">
+<td class="name">Leslie Bender</td>
+<td class="org">Eversheds Sutherland</td>
+<td class="title">Senior Counsel</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Counsel who vets AI offerings = Audit/referral (8).</td>
+<td class="pros">Eversheds senior counsel; vetting-AI panel = Audit story</td>
+<td class="cons">Big-law may advise clients not buy Pilot</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="mike gibb" data-status="sent (score 8 prior; no further fu w/o nathan)" data-inbound="No">
+<td class="name">Mike Gibb</td>
+<td class="org">AccountsRecovery.net (Event Owner)</td>
+<td class="title">Event Owner</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Organizer leverage for intros/credibility, not a Pilot PO — still must-connect (8).</td>
+<td class="pros">Event owner; Digest + speaking + buyer intros; known partner path</td>
+<td class="cons">Not a direct SettleUp buyer; time is scarce</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-sent">SENT (Score 8 prior; no further FU w/o Nathan)</span></td>
+<td class="next">No further follow-up without Nathan; onsite intros ask OK</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="olga mironova" data-status="sent (score 8 prior; no further fu w/o nathan)" data-inbound="No">
+<td class="name">Olga Mironova</td>
+<td class="org">CCMR3</td>
+<td class="title">Assistant Vice President of Operation</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Ops + disputes = Pilot pain path (8).</td>
+<td class="pros">AVP Ops; dispute-queue sandbox = validation/letters pain</td>
+<td class="cons">AVP may need upsell to budget owner</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-sent">SENT (Score 8 prior; no further FU w/o Nathan)</span></td>
+<td class="next">No further follow-up without Nathan; onsite Dispute co-speak OK</td>
+</tr>
+<tr class="score-8" data-score="8" data-tier="P0" data-name="sara burton (woggerman)" data-status="hold 8 (whova dm draft)" data-inbound="No">
+<td class="name">Sara Burton (Woggerman)</td>
+<td class="org">ARM Compliance Business Solutions</td>
+<td class="title">President</td>
+<td class="score-col" data-sort="8"><span class="score">8</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Compliance influencer into agency Pilot buyers (8).</td>
+<td class="pros">Compliance practice president; agencies trust her recommendations</td>
+<td class="cons">Influencer more than end buyer of software</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-hold">HOLD 8 (Whova DM draft)</span></td>
+<td class="next">Nathan greenlight before send</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="alec tilley" data-status="not contacted" data-inbound="No">
+<td class="name">Alec Tilley</td>
+<td class="org">Goal Solutions</td>
+<td class="title">Senior Vice President of Innovation</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Agency innovation leader Pilot path (7).</td>
+<td class="pros">SVP Innovation agency</td>
+<td class="cons">Innovation ≠ compliance letter owner</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="andrew troiano" data-status="not contacted" data-inbound="No">
+<td class="name">Andrew Troiano</td>
+<td class="org">Capio Partners</td>
+<td class="title">Chief Technology Officer</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Debt buyer tech + compliance panel (7).</td>
+<td class="pros">Debt buyer CTO; compliance-approval</td>
+<td class="cons">CTO may defer to compliance counsel</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="aubrey caraway" data-status="not contacted" data-inbound="No">
+<td class="name">Aubrey Caraway</td>
+<td class="org">Prosper Marketplace</td>
+<td class="title">Associate Director of Collections</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">First-party collections = plausible consult (7).</td>
+<td class="pros">First-party collections leader; letter compliance angle</td>
+<td class="cons">Marketplace/lender may differ from agency letter volume</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="brian mclellan" data-status="not contacted" data-inbound="No">
+<td class="name">Brian McLellan</td>
+<td class="org">Credit Solutions, LLC</td>
+<td class="title">Vice President of Technology</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Agency tech decision-maker (7).</td>
+<td class="pros">Agency VP Tech; buy/build/wait</td>
+<td class="cons">Tech may prefer build</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="brian williams" data-status="not contacted" data-inbound="No">
+<td class="name">Brian Williams</td>
+<td class="org">American First Finance</td>
+<td class="title">Director of Recovery</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Recovery director buyer signal (7).</td>
+<td class="pros">Director of Recovery; lifecycle panel</td>
+<td class="cons">May not own letter content compliance</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="jeff gordy" data-status="not contacted" data-inbound="No">
+<td class="name">Jeff Gordy</td>
+<td class="org">FCR Services</td>
+<td class="title">Chief Information Officer</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Agency CIO buy/build seat (7).</td>
+<td class="pros">Agency CIO; buy/build/wait</td>
+<td class="cons">CIO stack politics</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="jeremy ruth" data-status="not contacted" data-inbound="No">
+<td class="name">Jeremy Ruth</td>
+<td class="org">Arvest Bank</td>
+<td class="title">Sr Director Default Account Servicing</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Bank default servicing = letter-gate signal (7).</td>
+<td class="pros">Bank default servicing Sr Dir; letter/compliance</td>
+<td class="cons">Bank procurement friction</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="lance phair" data-status="not contacted" data-inbound="No">
+<td class="name">Lance Phair</td>
+<td class="org">Phillips &amp; Cohen Associates</td>
+<td class="title">Group Chief Analytics Officer</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Large-agency analytics on compliance panel (7).</td>
+<td class="pros">Group CAO; compliance-approval panel</td>
+<td class="cons">Analytics vs compliance budget</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="michael koczwara" data-status="not contacted" data-inbound="No">
+<td class="name">Michael Koczwara</td>
+<td class="org">Scott and Associates</td>
+<td class="title">Senior Manager, Automation and Analytics</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Agency automation + governance (7).</td>
+<td class="pros">Automation/analytics; governance session</td>
+<td class="cons">Sr Manager may need sponsor</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="robert sterett" data-status="not contacted" data-inbound="No">
+<td class="name">Robert Sterett</td>
+<td class="org">Revenue Enterprises</td>
+<td class="title">VP of Information Technology</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Agency IT on ops-pain panel (7).</td>
+<td class="pros">Agency VP IT; broken-system panel</td>
+<td class="cons">IT vs compliance owner</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="solomon adote" data-status="not contacted" data-inbound="No">
+<td class="name">Solomon Adote</td>
+<td class="org">Phillips &amp; Cohen Associates</td>
+<td class="title">Chief Information Security Officer</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Security + risk framing into large agency (7).</td>
+<td class="pros">Large agency CISO; risk panel = refuse narrative</td>
+<td class="cons">CISO may not own collections letters</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-7" data-score="7" data-tier="P1" data-name="tim smith" data-status="not contacted" data-inbound="No">
+<td class="name">Tim Smith</td>
+<td class="org">Firstsource</td>
+<td class="title">SVP</td>
+<td class="score-col" data-sort="7"><span class="score">7</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Large servicer compliance seat (7).</td>
+<td class="pros">Firstsource SVP; compliance-approval</td>
+<td class="cons">Large servicer build-vs-buy</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-6" data-score="6" data-tier="P0" data-name="abby hogan" data-status="not contacted" data-inbound="No">
+<td class="name">Abby Hogan</td>
+<td class="org">FairPlay.ai</td>
+<td class="title">General Counsel</td>
+<td class="score-col" data-sort="6"><span class="score">6</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Regulatory ally, not employer buyer — influence only (6).</td>
+<td class="pros">Regulators panel GC; Reg F/UDAAP ally language</td>
+<td class="cons">FairPlay.ai vendor GC — not SettleUp end buyer</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-6" data-score="6" data-tier="P1" data-name="blair demarco-wettlaufer" data-status="not contacted" data-inbound="No">
+<td class="name">Blair Demarco-Wettlaufer</td>
+<td class="org">Kingston Data &amp; Credit</td>
+<td class="title">Managing Director</td>
+<td class="score-col" data-sort="6"><span class="score">6</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">ARM operator — moderate Pilot path (6).</td>
+<td class="pros">Canadian ARM MD; change leadership</td>
+<td class="cons">Cross-border sales friction</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-6" data-score="6" data-tier="P1" data-name="garett johnson" data-status="not contacted" data-inbound="No">
+<td class="name">Garett Johnson</td>
+<td class="org">ARM Tech Advisors</td>
+<td class="title">Consultant</td>
+<td class="score-col" data-sort="6"><span class="score">6</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Influencer to agency buyers (6).</td>
+<td class="pros">Advises agencies on AI; can name shoppers</td>
+<td class="cons">Advisor fee path ≠ SettleUp PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-6" data-score="6" data-tier="P2" data-name="jacob georgeson" data-status="not contacted" data-inbound="No">
+<td class="name">Jacob Georgeson</td>
+<td class="org">Atlanticus Holdings</td>
+<td class="title">Head of AI</td>
+<td class="score-col" data-sort="6"><span class="score">6</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Creditor AI leader — lift if time (6).</td>
+<td class="pros">Creditor Head of AI — real consult path</td>
+<td class="cons">Listed P2 stretch; bandwidth</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-6" data-score="6" data-tier="P0" data-name="kelli van cleave" data-status="not contacted" data-inbound="No">
+<td class="name">Kelli Van Cleave</td>
+<td class="org">ACA International</td>
+<td class="title">Director of Education</td>
+<td class="score-col" data-sort="6"><span class="score">6</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p0">P0</span></td>
+<td class="tldr">Credibility/distribution node, not direct PO (6).</td>
+<td class="pros">ACA education; “AI Past Compliance” distribution</td>
+<td class="cons">Association ≠ employer buyer of Pilot</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-6" data-score="6" data-tier="P1" data-name="val smith" data-status="not contacted" data-inbound="No">
+<td class="name">Val Smith</td>
+<td class="org">Ally</td>
+<td class="title">Director of Auto AI &amp; Process Optimization Program</td>
+<td class="score-col" data-sort="6"><span class="score">6</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">First-party AI ops adjacent, not core letter (6).</td>
+<td class="pros">Ally auto AI/process leader</td>
+<td class="cons">AI process ≠ letter-risk owner</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-6" data-score="6" data-tier="P1" data-name="vance rodgers" data-status="not contacted" data-inbound="No">
+<td class="name">Vance Rodgers</td>
+<td class="org">Achieve</td>
+<td class="title">Director of AI Operational Transformation</td>
+<td class="score-col" data-sort="6"><span class="score">6</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Ops AI transform — moderate letter fit (6).</td>
+<td class="pros">Achieve AI transformation director</td>
+<td class="cons">Achieve may be lending-adjacent</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-6" data-score="6" data-tier="P1" data-name="yinze li" data-status="not contacted" data-inbound="No">
+<td class="name">Yinze Li</td>
+<td class="org">The Cascade365 Family of Companies</td>
+<td class="title">Finance &amp; Analytic Manager</td>
+<td class="score-col" data-sort="6"><span class="score">6</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Evaluation-seat buyer signal (6).</td>
+<td class="pros">Vetting AI offerings panel</td>
+<td class="cons">Manager title may lack budget</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
+</tr>
+<tr class="score-5" data-score="5" data-tier="P1" data-name="adrian tatsch" data-status="not contacted" data-inbound="No">
+<td class="name">Adrian Tatsch</td>
+<td class="org">Equifax</td>
+<td class="title">VP of AI Technology &amp; Innovation and Chief AI Architect</td>
+<td class="score-col" data-sort="5"><span class="score">5</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Keynote intros option, weak direct PO (5).</td>
+<td class="pros">Equifax keynote credibility; possible ecosystem intros</td>
+<td class="cons">Not ARM letter buyer; brief access only</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Opportunistic onsite / draft if bandwidth</td>
+</tr>
+<tr class="score-5" data-score="5" data-tier="P1" data-name="jack morris" data-status="not contacted" data-inbound="No">
+<td class="name">Jack Morris</td>
+<td class="org">TP Collections driven by Alliance One</td>
+<td class="title">VP of Business Development</td>
+<td class="score-col" data-sort="5"><span class="score">5</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Eval panel seat, weak employer PO (5).</td>
+<td class="pros">Vendor-eval seat on vetting panel</td>
+<td class="cons">VP BD — may be seller not buyer</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Opportunistic onsite / draft if bandwidth</td>
+</tr>
+<tr class="score-5" data-score="5" data-tier="P1" data-name="jeff wilser" data-status="not contacted" data-inbound="No">
+<td class="name">Jeff Wilser</td>
+<td class="org">The Curious Edge</td>
+<td class="title">Founder</td>
+<td class="score-col" data-sort="5"><span class="score">5</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Workshop access to buyers, not him as PO (5).</td>
+<td class="pros">Workshop room full of buyers</td>
+<td class="cons">He is facilitator not buyer</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Opportunistic onsite / draft if bandwidth</td>
+</tr>
+<tr class="score-5" data-score="5" data-tier="INB" data-name="kage carter" data-status="draft (triage)" data-inbound="YES">
+<td class="name">Kage Carter</td>
+<td class="org">(confirm org)</td>
+<td class="title"></td>
+<td class="score-col" data-sort="5"><span class="score">5</span><span class="score-denom">/10</span></td>
+<td class="intent">Unknown</td>
+<td class="tier"><span class="tier-inb">INB</span></td>
+<td class="tldr">Unknown intent — triage org/attend before Denver P0 or Calendly (5).</td>
+<td class="pros">Advisory/exit-strategy inquiry could be Nathan-consult path</td>
+<td class="cons">Org unconfirmed; Brainstorm attendance unclear</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-draft">DRAFT (triage)</span></td>
+<td class="next">Confirm org + attend before Calendly</td>
+</tr>
+<tr class="score-5" data-score="5" data-tier="P1" data-name="katie zugsay" data-status="not contacted" data-inbound="No">
+<td class="name">Katie Zugsay</td>
+<td class="org">Finexus Insurance Agency</td>
+<td class="title">CEO</td>
+<td class="score-col" data-sort="5"><span class="score">5</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Adjacent risk CEO — opportunistic (5).</td>
+<td class="pros">Compliance-approval panel; risk adjacency</td>
+<td class="cons">Insurance ≠ letter-gate core</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Opportunistic onsite / draft if bandwidth</td>
+</tr>
+<tr class="score-5" data-score="5" data-tier="P1" data-name="lucas brown" data-status="not contacted" data-inbound="No">
+<td class="name">Lucas Brown</td>
+<td class="org">Saige Analytics</td>
+<td class="title">Managing Partner</td>
+<td class="score-col" data-sort="5"><span class="score">5</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Sandbox influencer peer (5).</td>
+<td class="pros">Regulated-data sandbox; analytics peer</td>
+<td class="cons">Analytics vendor-adjacent</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Opportunistic onsite / draft if bandwidth</td>
+</tr>
+<tr class="score-5" data-score="5" data-tier="P2" data-name="matt esterman" data-status="not contacted" data-inbound="No">
+<td class="name">Matt Esterman</td>
+<td class="org">Lendly</td>
+<td class="title">Vice President of Operations</td>
+<td class="score-col" data-sort="5"><span class="score">5</span><span class="score-denom">/10</span></td>
+<td class="intent">Nathan-consult</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Stretch lender ops (5).</td>
+<td class="pros">Lender VP Ops stretch</td>
+<td class="cons">Lender ≠ agency letter core</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Opportunistic onsite / draft if bandwidth</td>
+</tr>
+<tr class="score-5" data-score="5" data-tier="P1" data-name="rachel eaker" data-status="not contacted" data-inbound="No">
+<td class="name">Rachel Eaker</td>
+<td class="org">2nd Order Solutions (2OS)</td>
+<td class="title">Senior Engagement Manager</td>
+<td class="score-col" data-sort="5"><span class="score">5</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Consulting influence, not SettleUp PO (5).</td>
+<td class="pros">ROI panel; consulting influence</td>
+<td class="cons">Engagement mgr at consultancy</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Opportunistic onsite / draft if bandwidth</td>
+</tr>
+<tr class="score-5" data-score="5" data-tier="P1" data-name="ralph hall" data-status="not contacted" data-inbound="No">
+<td class="name">Ralph Hall</td>
+<td class="org">GVH Consulting</td>
+<td class="title">Founder and Principal</td>
+<td class="score-col" data-sort="5"><span class="score">5</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Sandbox influencer, not PO (5).</td>
+<td class="pros">Sandbox multi-session leader</td>
+<td class="cons">Consultant — not employer buyer</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Opportunistic onsite / draft if bandwidth</td>
+</tr>
+<tr class="score-4" data-score="4" data-tier="P1" data-name="eric nevels" data-status="not contacted" data-inbound="No">
+<td class="name">Eric Nevels</td>
+<td class="org">TrueAccord</td>
+<td class="title">Sr. Director, Operational Support</td>
+<td class="score-col" data-sort="4"><span class="score">4</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Cordial only — avoid pitch war (4).</td>
+<td class="pros">Change-leadership panel access</td>
+<td class="cons">TrueAccord competitive adjacency</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-4" data-score="4" data-tier="P2" data-name="john watson" data-status="not contacted" data-inbound="No">
+<td class="name">John Watson</td>
+<td class="org">Cedar Hill Advisors</td>
+<td class="title">Founder and CEO</td>
+<td class="score-col" data-sort="4"><span class="score">4</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Advisory stretch (4).</td>
+<td class="pros">Advisory intros possible</td>
+<td class="cons">Not employer letter buyer</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-4" data-score="4" data-tier="INB" data-name="katie bien" data-status="not contacted" data-inbound="No">
+<td class="name">Katie Bien</td>
+<td class="org">Clark Hill</td>
+<td class="title">Business Development Manager</td>
+<td class="score-col" data-sort="4"><span class="score">4</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-inb">INB</span></td>
+<td class="tldr">Useful Clark Hill connector (4) but not a SettleUp buyer; warm hi, route to Needleman/Derman.</td>
+<td class="pros">Operational glue for Clark Hill @ Brainstorm; door-opener to P0 counsel</td>
+<td class="cons">BD ≠ letter-risk PO; intro-only path</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-4" data-score="4" data-tier="P1" data-name="rodrigo fuentes" data-status="draft (linkedin peer; no buyer calendly)" data-inbound="YES">
+<td class="name">Rodrigo Fuentes</td>
+<td class="org">Kompato AI</td>
+<td class="title">VP of GTM</td>
+<td class="score-col" data-sort="4"><span class="score">4</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Peer-vendor mutual collab — intros only, not Calendly-as-buyer (4).</td>
+<td class="pros">Warm thread; Sandbox peer; possible buyer intros</td>
+<td class="cons">Kompato = peer vendor, not SettleUp employer buyer</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-draft">DRAFT (LinkedIn peer; no buyer Calendly)</span></td>
+<td class="next">Send peer intro-trade draft if wanted</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P2" data-name="ben schreiner" data-status="not contacted" data-inbound="No">
+<td class="name">Ben Schreiner</td>
+<td class="org">AWS</td>
+<td class="title">Head of Business Innovation Advisors</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Cloud influence; pilot-to-prod talk — not letter buyer</td>
+<td class="pros">Cloud influence; pilot-to-prod talk — not letter buyer</td>
+<td class="cons">Influence/peer more than employer PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P2" data-name="brett schklar" data-status="not contacted" data-inbound="No">
+<td class="name">Brett Schklar</td>
+<td class="org">AI First Leadership</td>
+<td class="title">CEO</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Lightning sessions peer</td>
+<td class="pros">Lightning sessions peer</td>
+<td class="cons">Influence/peer more than employer PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P2" data-name="dan yakimenko" data-status="not contacted" data-inbound="No">
+<td class="name">Dan Yakimenko</td>
+<td class="org">EXL</td>
+<td class="title">Head of Debt Collections Industry Solutions</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">BPO/tech services</td>
+<td class="pros">BPO/tech services</td>
+<td class="cons">Influence/peer more than employer PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P2" data-name="jeremy mapes" data-status="not contacted" data-inbound="No">
+<td class="name">Jeremy Mapes</td>
+<td class="org">Mapes LLC</td>
+<td class="title">Founder and President</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Sandbox peer</td>
+<td class="pros">Sandbox peer</td>
+<td class="cons">Influence/peer more than employer PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P2" data-name="kevin witherow" data-status="not contacted" data-inbound="No">
+<td class="name">Kevin Witherow</td>
+<td class="org">Solvent+</td>
+<td class="title">Director of AI Engineering</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Sandbox capstone peer</td>
+<td class="pros">Sandbox capstone peer</td>
+<td class="cons">Influence/peer more than employer PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P2" data-name="michael wentworth rogers" data-status="not contacted" data-inbound="No">
+<td class="name">Michael Wentworth Rogers</td>
+<td class="org">Newco 3DX Ventures</td>
+<td class="title">Principal</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Investor/ventures</td>
+<td class="pros">Investor/ventures</td>
+<td class="cons">Influence/peer more than employer PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P2" data-name="michael zhou" data-status="not contacted" data-inbound="No">
+<td class="name">Michael Zhou</td>
+<td class="org">InDebted</td>
+<td class="title">VP of Data and AI</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Digital collections platform</td>
+<td class="pros">Digital collections platform</td>
+<td class="cons">Influence/peer more than employer PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P1" data-name="rob grafrath" data-status="auto-skip (membership ask)" data-inbound="YES">
+<td class="name">Rob Grafrath</td>
+<td class="org">Grafrath Consulting</td>
+<td class="title">Owner</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Benefit-them-only</td>
+<td class="tier"><span class="tier-p1">P1</span></td>
+<td class="tldr">Membership pitch inbound; intros-only if natural (3).</td>
+<td class="pros">Industry builder; possible intros if reframed</td>
+<td class="cons">Inbound = membership/booth — AUTO-SKIP send</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-skip">AUTO-SKIP (membership ask)</span></td>
+<td class="next">Soft network only if natural</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P2" data-name="tracy glen" data-status="not contacted" data-inbound="No">
+<td class="name">Tracy Glen</td>
+<td class="org">SingleStone</td>
+<td class="title">Chief Client and Strategy Officer</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Consultancy</td>
+<td class="pros">Consultancy</td>
+<td class="cons">Influence/peer more than employer PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-3" data-score="3" data-tier="P2" data-name="vrinda gupta" data-status="not contacted" data-inbound="No">
+<td class="name">Vrinda Gupta</td>
+<td class="org">Sequin AI</td>
+<td class="title">CEO</td>
+<td class="score-col" data-sort="3"><span class="score">3</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">AI vendor (governance panel)</td>
+<td class="pros">AI vendor (governance panel)</td>
+<td class="cons">Influence/peer more than employer PO</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-none">Not contacted</span></td>
+<td class="next">Low priority / peer hi only</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="carl briganti" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Carl Briganti</td>
+<td class="org">CSS Impact</td>
+<td class="title">President and Founder</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Collections tech vendor</td>
+<td class="pros">Collections tech vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="chris ball" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Chris Ball</td>
+<td class="org">Belvista Software</td>
+<td class="title">President</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Software vendor</td>
+<td class="pros">Software vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="chris carney" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Chris Carney</td>
+<td class="org">Mission Cloud</td>
+<td class="title">Lead AI Solutions Architect</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Cloud SI</td>
+<td class="pros">Cloud SI</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="chris witsil" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Chris Witsil</td>
+<td class="org">Affirm</td>
+<td class="title">Sr. Product Manager</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">BNPL product — low letter-gate fit</td>
+<td class="pros">BNPL product — low letter-gate fit</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="cody owens" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Cody Owens</td>
+<td class="org">Equabli</td>
+<td class="title">CEO</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Vendor/fintech</td>
+<td class="pros">Vendor/fintech</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="dave snow" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Dave Snow</td>
+<td class="org">Remitter</td>
+<td class="title">Group CEO</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Payments/vendor adjacency</td>
+<td class="pros">Payments/vendor adjacency</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="david kullmann" data-status="skip (≤2)" data-inbound="No">
+<td class="name">David Kullmann</td>
+<td class="org">Vertican Technologies</td>
+<td class="title">Dir. Technology Automation Shared Services</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Vendor-pitch-to-Nathan</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Sandbox peer vendor at Vertican = network hi only; auto-skip Calendly (Score 2).</td>
+<td class="pros">On Mike sandbox To:; possible buyer intros</td>
+<td class="cons">Collections software/AI vendor peer — not SettleUp employer buyer</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="gerald paulraj" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Gerald Paulraj</td>
+<td class="org">StayAhead</td>
+<td class="title">CEO &amp; Founder</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Vendor</td>
+<td class="pros">Vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="jesse bird" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Jesse Bird</td>
+<td class="org">TCN</td>
+<td class="title">CTO and Co-founder</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Dialer/comms vendor sponsor energy</td>
+<td class="pros">Dialer/comms vendor sponsor energy</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="john fuller" data-status="skip (≤2)" data-inbound="No">
+<td class="name">John Fuller</td>
+<td class="org">Solvent+</td>
+<td class="title">Chief Information Officer</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Platform vendor</td>
+<td class="pros">Platform vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="joseph finlayson" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Joseph Finlayson</td>
+<td class="org">Enam Co.</td>
+<td class="title">Head of Forward Deployed</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Vendor services</td>
+<td class="pros">Vendor services</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="joshua march" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Joshua March</td>
+<td class="org">Veritus</td>
+<td class="title">CEO</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Vendor</td>
+<td class="pros">Vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="michael walsh" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Michael Walsh</td>
+<td class="org">EXL</td>
+<td class="title">Vice President - Sales Engineering and Client Success</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Vendor-pitch-to-Nathan</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Services vendor</td>
+<td class="pros">Services vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="mitchell keo" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Mitchell Keo</td>
+<td class="org">InterProse</td>
+<td class="title">AI Engineer</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Sandbox peer</td>
+<td class="pros">Sandbox peer</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="ryan mack" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Ryan Mack</td>
+<td class="org">Divinity Software Group</td>
+<td class="title">Founder and CEO</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Sandbox regulated-data</td>
+<td class="pros">Sandbox regulated-data</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="scott carter" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Scott Carter</td>
+<td class="org">Bounce AI</td>
+<td class="title">Chief Strategy Officer</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Collections AI vendor</td>
+<td class="pros">Collections AI vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="sebastian wigstrom" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Sebastian Wigstrom</td>
+<td class="org">Clerkie</td>
+<td class="title">Co-founder and CTO</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Fintech vendor</td>
+<td class="pros">Fintech vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="shantanu gangal" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Shantanu Gangal</td>
+<td class="org">Prodigal</td>
+<td class="title">CEO</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Competitive-adjacent AI collections vendor</td>
+<td class="pros">Competitive-adjacent AI collections vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="thomas eaves" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Thomas Eaves</td>
+<td class="org">Gener8v</td>
+<td class="title">Chief Technology Officer &amp; Co-Founder</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Vendor</td>
+<td class="pros">Vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-2" data-score="2" data-tier="P2" data-name="zhiyao pei" data-status="skip (≤2)" data-inbound="No">
+<td class="name">Zhiyao Pei</td>
+<td class="org">CreditBots &amp; Partners</td>
+<td class="title">Founder</td>
+<td class="score-col" data-sort="2"><span class="score">2</span><span class="score-denom">/10</span></td>
+<td class="intent">Mutual</td>
+<td class="tier"><span class="tier-p2">P2</span></td>
+<td class="tldr">Vendor</td>
+<td class="pros">Vendor</td>
+<td class="cons">Low SettleUp buyer fit</td>
+<td class="inbound">No</td>
+<td class="status"><span class="st-skip">Skip (≤2)</span></td>
+<td class="next">Skip / peer hi only if natural</td>
+</tr>
+<tr class="score-1" data-score="1" data-tier="INB" data-name="ana reyes" data-status="auto-skip" data-inbound="YES">
+<td class="name">Ana Reyes</td>
+<td class="org">Pronto Connects</td>
+<td class="title"></td>
+<td class="score-col" data-sort="1"><span class="score">1</span><span class="score-denom">/10</span></td>
+<td class="intent">Vendor-pitch-to-Nathan</td>
+<td class="tier"><span class="tier-inb">INB</span></td>
+<td class="tldr">SaaS vendor pitching TO Nathan (1).</td>
+<td class="pros">SaaS vendor demo pitch</td>
+<td class="cons">Demo Pronto to Nathan</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-skip">AUTO-SKIP</span></td>
+<td class="next">Do not contact</td>
+</tr>
+<tr class="score-1" data-score="1" data-tier="INB" data-name="bemnet tesfaye" data-status="auto-skip" data-inbound="YES">
+<td class="name">Bemnet Tesfaye</td>
+<td class="org">iTuring.ai (Booth 27)</td>
+<td class="title">Booth 27 AE</td>
+<td class="score-col" data-sort="1"><span class="score">1</span><span class="score-denom">/10</span></td>
+<td class="intent">Vendor-pitch-to-Nathan</td>
+<td class="tier"><span class="tier-inb">INB</span></td>
+<td class="tldr">AUTO-SKIP** vendor pitch to Nathan (1).</td>
+<td class="pros">Booth proximity</td>
+<td class="cons">AE pitching iTuring **to** Nathan</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-skip">AUTO-SKIP</span></td>
+<td class="next">Do not contact</td>
+</tr>
+<tr class="score-1" data-score="1" data-tier="INB" data-name="matt scott" data-status="auto-skip" data-inbound="YES">
+<td class="name">Matt Scott</td>
+<td class="org">Emprise Technologies (Booth #6)</td>
+<td class="title">Booth #6</td>
+<td class="score-col" data-sort="1"><span class="score">1</span><span class="score-denom">/10</span></td>
+<td class="intent">Vendor-pitch-to-Nathan</td>
+<td class="tier"><span class="tier-inb">INB</span></td>
+<td class="tldr">AUTO-SKIP** vendor pitch to Nathan (1).</td>
+<td class="pros">Booth #6</td>
+<td class="cons">Emprise Conduit/automation pitch to Nathan</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-skip">AUTO-SKIP</span></td>
+<td class="next">Do not contact</td>
+</tr>
+<tr class="score-1" data-score="1" data-tier="INB" data-name="payment savvy team" data-status="auto-skip" data-inbound="YES">
+<td class="name">Payment Savvy team</td>
+<td class="org">Payment Savvy</td>
+<td class="title">Booth 32</td>
+<td class="score-col" data-sort="1"><span class="score">1</span><span class="score-denom">/10</span></td>
+<td class="intent">Vendor-pitch-to-Nathan</td>
+<td class="tier"><span class="tier-inb">INB</span></td>
+<td class="tldr">Vendor booth pitch TO Nathan (1).</td>
+<td class="pros">Booth pitch</td>
+<td class="cons">Booth 32 grab-15</td>
+<td class="inbound"><span class="inbound-yes">YES</span></td>
+<td class="status"><span class="st-skip">AUTO-SKIP</span></td>
+<td class="next">Do not contact</td>
+</tr>
+<tr class="row-self row-self" data-score="" data-tier="SELF" data-name="nathan platter" data-status="execute" data-inbound="—">
+<td class="name">Nathan Platter</td>
+<td class="org">Platter Analytics Co / SettleUp</td>
+<td class="title">Principal, Analytics &amp; AI</td>
+<td class="score-col" data-sort="-1"><span class="self-score">—</span></td>
+<td class="intent">—</td>
+<td class="tier"><span class="tier-self">SELF</span></td>
+<td class="tldr">Self — do not score as prospect.</td>
+<td class="pros">Self (Lightning Sessions) — run demos, don’t “prospect” self</td>
+<td class="cons">—</td>
+<td class="inbound">—</td>
+<td class="status"><span class="st-none">Execute</span></td>
+<td class="next">Own Lightning + Sandbox rooms</td>
+</tr>
+    </tbody>
+  </table>
+<div class="cards" id="cards">
+<div class="card"><div class="name">Chris Taylor <span class="badge">9/10/10 · P0</span></div><div class="meta">Key 2 Recovery · President</div><div class="row"><span class="label">Why</span> Owner who feels letter hallucination risk (9).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> SEND NOW (Whova DM · Score 9)</div><div class="row"><span class="label">Next</span> Send Whova DM now (autonomy 9–10)</div></div>
+<div class="card"><div class="name">Dan Medina <span class="badge">9/10/10 · P0</span></div><div class="meta">Harris &amp;amp; Harris · Sr. Director of AI Applications &amp;amp; Operational Effectiveness</div><div class="row"><span class="label">Why</span> Agency AI decision-maker = classic Pilot (9).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> SENT Email 2026-09-05 ~3:13 PM CT</div><div class="row"><span class="label">Next</span> Wait for reply / Sandbox demo fail-closed</div></div>
+<div class="card"><div class="name">Jim Beck <span class="badge">9/10/10 · P0</span></div><div class="meta">MRS BPO · President and COO</div><div class="row"><span class="label">Why</span> Large BPO ops decision-maker for letter control (9).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> SEND NOW (Whova DM · Score 9)</div><div class="row"><span class="label">Next</span> Send Whova DM now (autonomy 9–10)</div></div>
+<div class="card"><div class="name">Joann Needleman <span class="badge">9/10/10 · P0</span></div><div class="meta">Clark Hill PLC · Member and Leader Financial Services Regulatory Compliance</div><div class="row"><span class="label">Why</span> Counsel + sponsor = top Audit/Firm consult path (9).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> SENT Email 2026-09-05 ~3:13 PM CT</div><div class="row"><span class="label">Next</span> Wait for reply / Capstone handshake</div></div>
+<div class="card"><div class="name">Juergen Lunkwitz <span class="badge">9/10/10 · P0</span></div><div class="meta">Contract Callers · Director of Utility GenAI and Logistics</div><div class="row"><span class="label">Why</span> Warm inbound + agency AI ops = highest mutual Pilot path (9).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> SENT LinkedIn 2026-09-05 ~2:21 PM CT</div><div class="row"><span class="label">Next</span> Wait for reply / onsite Thu Automate tea</div></div>
+<div class="card"><div class="name">Matthew Maloney <span class="badge">9/10/10 · P0</span></div><div class="meta">First Financial Asset Management (FFAM360) · CEO/Chief Investment Officer</div><div class="row"><span class="label">Why</span> Debt buyer CEO = Firm/Audit economics (9).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> SEND NOW (Whova DM · Score 9)</div><div class="row"><span class="label">Next</span> Send Whova DM now (autonomy 9–10)</div></div>
+<div class="card"><div class="name">Megan Hebert <span class="badge">9/10/10 · P0</span></div><div class="meta">Specialized Collection Systems, Inc. (SCS · President</div><div class="row"><span class="label">Why</span> Agency owner on roadmap = Pilot/Firm (9).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> SEND NOW (Whova DM · Score 9)</div><div class="row"><span class="label">Next</span> Send Whova DM now (autonomy 9–10)</div></div>
+<div class="card"><div class="name">Regina Slowey <span class="badge">9/10/10 · P0</span></div><div class="meta">Barron &amp;amp; Newburger · President/CEO</div><div class="row"><span class="label">Why</span> Firm leader on Regulators panel = Firm/Audit needle (9).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> SEND NOW (Whova DM · Score 9)</div><div class="row"><span class="label">Next</span> Send Whova DM now (autonomy 9–10)</div></div>
+<div class="card"><div class="name">Ari Derman <span class="badge">8/10/10 · P0</span></div><div class="meta">Clark Hill · Member</div><div class="row"><span class="label">Why</span> Dispute sandbox + counsel = strong Audit framing (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> SENT (Score 8 prior; no further FU w/o Nathan)</div><div class="row"><span class="label">Next</span> No further follow-up without Nathan; Dispute session handshake OK</div></div>
+<div class="card"><div class="name">Cathy Fellabaum <span class="badge">8/10/10 · P0</span></div><div class="meta">Harvest Strategy Group, Inc. · Vice President, Recoveries</div><div class="row"><span class="label">Why</span> Recoveries VP = ops Pilot buyer (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Dennis Barton <span class="badge">8/10/10 · P1</span></div><div class="meta">Barton Law Group · Owner</div><div class="row"><span class="label">Why</span> Counsel owner = Audit/Pilot influencer-buyer (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Heath Morgan <span class="badge">8/10/10 · P0</span></div><div class="meta">Martin Golden Lyons Watts Morgan · Partner</div><div class="row"><span class="label">Why</span> Counsel-channel Audit buyer/influencer (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> HOLD 8 (Whova DM draft)</div><div class="row"><span class="label">Next</span> Nathan greenlight before send</div></div>
+<div class="card"><div class="name">Jacqueline Wilson <span class="badge">8/10/10 · P0</span></div><div class="meta">U.S. Bank National Association · Senior Corporate Counsel</div><div class="row"><span class="label">Why</span> First-party counsel who gates agency AI letters (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> HOLD 8 (Whova DM draft)</div><div class="row"><span class="label">Next</span> Nathan greenlight before send</div></div>
+<div class="card"><div class="name">John Erickson <span class="badge">8/10/10 · P1</span></div><div class="meta">Credit Service International · President &amp;amp; CEO</div><div class="row"><span class="label">Why</span> Agency CEO business-case seat (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Jonathan Goldberg <span class="badge">8/10/10 · P1</span></div><div class="meta">National Recovery Associates · President</div><div class="row"><span class="label">Why</span> Agency president = Pilot path (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Katherine O&amp;#x27;Brien <span class="badge">8/10/10 · P0</span></div><div class="meta">UHG · General Counsel &amp;amp; Chief Compliance Officer</div><div class="row"><span class="label">Why</span> Compliance gatekeeper persona for letter gate (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> HOLD 8 (Whova DM draft)</div><div class="row"><span class="label">Next</span> Nathan greenlight before send</div></div>
+<div class="card"><div class="name">Kristyn Leffler <span class="badge">8/10/10 · P0</span></div><div class="meta">Resurgent Capital Services · Vice President of Strategy Integration and Analytics</div><div class="row"><span class="label">Why</span> Debt-buyer strategy seat for pilot gate (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Leslie Bender <span class="badge">8/10/10 · P0</span></div><div class="meta">Eversheds Sutherland · Senior Counsel</div><div class="row"><span class="label">Why</span> Counsel who vets AI offerings = Audit/referral (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Mike Gibb <span class="badge">8/10/10 · P0</span></div><div class="meta">AccountsRecovery.net (Event Owner) · Event Owner</div><div class="row"><span class="label">Why</span> Organizer leverage for intros/credibility, not a Pilot PO — still must-connect (8).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> SENT (Score 8 prior; no further FU w/o Nathan)</div><div class="row"><span class="label">Next</span> No further follow-up without Nathan; onsite intros ask OK</div></div>
+<div class="card"><div class="name">Olga Mironova <span class="badge">8/10/10 · P0</span></div><div class="meta">CCMR3 · Assistant Vice President of Operation</div><div class="row"><span class="label">Why</span> Ops + disputes = Pilot pain path (8).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> SENT (Score 8 prior; no further FU w/o Nathan)</div><div class="row"><span class="label">Next</span> No further follow-up without Nathan; onsite Dispute co-speak OK</div></div>
+<div class="card"><div class="name">Sara Burton (Woggerman) <span class="badge">8/10/10 · P0</span></div><div class="meta">ARM Compliance Business Solutions · President</div><div class="row"><span class="label">Why</span> Compliance influencer into agency Pilot buyers (8).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> HOLD 8 (Whova DM draft)</div><div class="row"><span class="label">Next</span> Nathan greenlight before send</div></div>
+<div class="card"><div class="name">Alec Tilley <span class="badge">7/10/10 · P1</span></div><div class="meta">Goal Solutions · Senior Vice President of Innovation</div><div class="row"><span class="label">Why</span> Agency innovation leader Pilot path (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Andrew Troiano <span class="badge">7/10/10 · P1</span></div><div class="meta">Capio Partners · Chief Technology Officer</div><div class="row"><span class="label">Why</span> Debt buyer tech + compliance panel (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Aubrey Caraway <span class="badge">7/10/10 · P1</span></div><div class="meta">Prosper Marketplace · Associate Director of Collections</div><div class="row"><span class="label">Why</span> First-party collections = plausible consult (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Brian McLellan <span class="badge">7/10/10 · P1</span></div><div class="meta">Credit Solutions, LLC · Vice President of Technology</div><div class="row"><span class="label">Why</span> Agency tech decision-maker (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Brian Williams <span class="badge">7/10/10 · P1</span></div><div class="meta">American First Finance · Director of Recovery</div><div class="row"><span class="label">Why</span> Recovery director buyer signal (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Jeff Gordy <span class="badge">7/10/10 · P1</span></div><div class="meta">FCR Services · Chief Information Officer</div><div class="row"><span class="label">Why</span> Agency CIO buy/build seat (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Jeremy Ruth <span class="badge">7/10/10 · P1</span></div><div class="meta">Arvest Bank · Sr Director Default Account Servicing</div><div class="row"><span class="label">Why</span> Bank default servicing = letter-gate signal (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Lance Phair <span class="badge">7/10/10 · P1</span></div><div class="meta">Phillips &amp;amp; Cohen Associates · Group Chief Analytics Officer</div><div class="row"><span class="label">Why</span> Large-agency analytics on compliance panel (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Michael Koczwara <span class="badge">7/10/10 · P1</span></div><div class="meta">Scott and Associates · Senior Manager, Automation and Analytics</div><div class="row"><span class="label">Why</span> Agency automation + governance (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Robert Sterett <span class="badge">7/10/10 · P1</span></div><div class="meta">Revenue Enterprises · VP of Information Technology</div><div class="row"><span class="label">Why</span> Agency IT on ops-pain panel (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Solomon Adote <span class="badge">7/10/10 · P1</span></div><div class="meta">Phillips &amp;amp; Cohen Associates · Chief Information Security Officer</div><div class="row"><span class="label">Why</span> Security + risk framing into large agency (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Tim Smith <span class="badge">7/10/10 · P1</span></div><div class="meta">Firstsource · SVP</div><div class="row"><span class="label">Why</span> Large servicer compliance seat (7).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Abby Hogan <span class="badge">6/10/10 · P0</span></div><div class="meta">FairPlay.ai · General Counsel</div><div class="row"><span class="label">Why</span> Regulatory ally, not employer buyer — influence only (6).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Blair Demarco-Wettlaufer <span class="badge">6/10/10 · P1</span></div><div class="meta">Kingston Data &amp;amp; Credit · Managing Director</div><div class="row"><span class="label">Why</span> ARM operator — moderate Pilot path (6).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Garett Johnson <span class="badge">6/10/10 · P1</span></div><div class="meta">ARM Tech Advisors · Consultant</div><div class="row"><span class="label">Why</span> Influencer to agency buyers (6).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Jacob Georgeson <span class="badge">6/10/10 · P2</span></div><div class="meta">Atlanticus Holdings · Head of AI</div><div class="row"><span class="label">Why</span> Creditor AI leader — lift if time (6).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Kelli Van Cleave <span class="badge">6/10/10 · P0</span></div><div class="meta">ACA International · Director of Education</div><div class="row"><span class="label">Why</span> Credibility/distribution node, not direct PO (6).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Val Smith <span class="badge">6/10/10 · P1</span></div><div class="meta">Ally · Director of Auto AI &amp;amp; Process Optimization Program</div><div class="row"><span class="label">Why</span> First-party AI ops adjacent, not core letter (6).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Vance Rodgers <span class="badge">6/10/10 · P1</span></div><div class="meta">Achieve · Director of AI Operational Transformation</div><div class="row"><span class="label">Why</span> Ops AI transform — moderate letter fit (6).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Yinze Li <span class="badge">6/10/10 · P1</span></div><div class="meta">The Cascade365 Family of Companies · Finance &amp;amp; Analytic Manager</div><div class="row"><span class="label">Why</span> Evaluation-seat buyer signal (6).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> HOLD for Nathan — do not auto-send (8/7/6)</div></div>
+<div class="card"><div class="name">Adrian Tatsch <span class="badge">5/10/10 · P1</span></div><div class="meta">Equifax · VP of AI Technology &amp;amp; Innovation and Chief AI Architect</div><div class="row"><span class="label">Why</span> Keynote intros option, weak direct PO (5).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Opportunistic onsite / draft if bandwidth</div></div>
+<div class="card"><div class="name">Jack Morris <span class="badge">5/10/10 · P1</span></div><div class="meta">TP Collections driven by Alliance One · VP of Business Development</div><div class="row"><span class="label">Why</span> Eval panel seat, weak employer PO (5).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Opportunistic onsite / draft if bandwidth</div></div>
+<div class="card"><div class="name">Jeff Wilser <span class="badge">5/10/10 · P1</span></div><div class="meta">The Curious Edge · Founder</div><div class="row"><span class="label">Why</span> Workshop access to buyers, not him as PO (5).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Opportunistic onsite / draft if bandwidth</div></div>
+<div class="card"><div class="name">Kage Carter <span class="badge">5/10/10 · INB</span></div><div class="meta">(confirm org)</div><div class="row"><span class="label">Why</span> Unknown intent — triage org/attend before Denver P0 or Calendly (5).</div><div class="row"><span class="label">Intent</span> Unknown</div><div class="row"><span class="label">Status</span> DRAFT (triage)</div><div class="row"><span class="label">Next</span> Confirm org + attend before Calendly</div></div>
+<div class="card"><div class="name">Katie Zugsay <span class="badge">5/10/10 · P1</span></div><div class="meta">Finexus Insurance Agency · CEO</div><div class="row"><span class="label">Why</span> Adjacent risk CEO — opportunistic (5).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Opportunistic onsite / draft if bandwidth</div></div>
+<div class="card"><div class="name">Lucas Brown <span class="badge">5/10/10 · P1</span></div><div class="meta">Saige Analytics · Managing Partner</div><div class="row"><span class="label">Why</span> Sandbox influencer peer (5).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Opportunistic onsite / draft if bandwidth</div></div>
+<div class="card"><div class="name">Matt Esterman <span class="badge">5/10/10 · P2</span></div><div class="meta">Lendly · Vice President of Operations</div><div class="row"><span class="label">Why</span> Stretch lender ops (5).</div><div class="row"><span class="label">Intent</span> Nathan-consult</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Opportunistic onsite / draft if bandwidth</div></div>
+<div class="card"><div class="name">Rachel Eaker <span class="badge">5/10/10 · P1</span></div><div class="meta">2nd Order Solutions (2OS) · Senior Engagement Manager</div><div class="row"><span class="label">Why</span> Consulting influence, not SettleUp PO (5).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Opportunistic onsite / draft if bandwidth</div></div>
+<div class="card"><div class="name">Ralph Hall <span class="badge">5/10/10 · P1</span></div><div class="meta">GVH Consulting · Founder and Principal</div><div class="row"><span class="label">Why</span> Sandbox influencer, not PO (5).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Opportunistic onsite / draft if bandwidth</div></div>
+<div class="card"><div class="name">Eric Nevels <span class="badge">4/10/10 · P1</span></div><div class="meta">TrueAccord · Sr. Director, Operational Support</div><div class="row"><span class="label">Why</span> Cordial only — avoid pitch war (4).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">John Watson <span class="badge">4/10/10 · P2</span></div><div class="meta">Cedar Hill Advisors · Founder and CEO</div><div class="row"><span class="label">Why</span> Advisory stretch (4).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Katie Bien <span class="badge">4/10/10 · INB</span></div><div class="meta">Clark Hill · Business Development Manager</div><div class="row"><span class="label">Why</span> Useful Clark Hill connector (4) but not a SettleUp buyer; warm hi, route to Needleman/Derman.</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Rodrigo Fuentes <span class="badge">4/10/10 · P1</span></div><div class="meta">Kompato AI · VP of GTM</div><div class="row"><span class="label">Why</span> Peer-vendor mutual collab — intros only, not Calendly-as-buyer (4).</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> DRAFT (LinkedIn peer; no buyer Calendly)</div><div class="row"><span class="label">Next</span> Send peer intro-trade draft if wanted</div></div>
+<div class="card"><div class="name">Ben Schreiner <span class="badge">3/10/10 · P2</span></div><div class="meta">AWS · Head of Business Innovation Advisors</div><div class="row"><span class="label">Why</span> Cloud influence; pilot-to-prod talk — not letter buyer</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Brett Schklar <span class="badge">3/10/10 · P2</span></div><div class="meta">AI First Leadership · CEO</div><div class="row"><span class="label">Why</span> Lightning sessions peer</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Dan Yakimenko <span class="badge">3/10/10 · P2</span></div><div class="meta">EXL · Head of Debt Collections Industry Solutions</div><div class="row"><span class="label">Why</span> BPO/tech services</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Jeremy Mapes <span class="badge">3/10/10 · P2</span></div><div class="meta">Mapes LLC · Founder and President</div><div class="row"><span class="label">Why</span> Sandbox peer</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Kevin Witherow <span class="badge">3/10/10 · P2</span></div><div class="meta">Solvent+ · Director of AI Engineering</div><div class="row"><span class="label">Why</span> Sandbox capstone peer</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Michael Wentworth Rogers <span class="badge">3/10/10 · P2</span></div><div class="meta">Newco 3DX Ventures · Principal</div><div class="row"><span class="label">Why</span> Investor/ventures</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Michael Zhou <span class="badge">3/10/10 · P2</span></div><div class="meta">InDebted · VP of Data and AI</div><div class="row"><span class="label">Why</span> Digital collections platform</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Rob Grafrath <span class="badge">3/10/10 · P1</span></div><div class="meta">Grafrath Consulting · Owner</div><div class="row"><span class="label">Why</span> Membership pitch inbound; intros-only if natural (3).</div><div class="row"><span class="label">Intent</span> Benefit-them-only</div><div class="row"><span class="label">Status</span> Inbound = membership/booth — AUTO-SKIP send</div><div class="row"><span class="label">Next</span> Soft network only if natural</div></div>
+<div class="card"><div class="name">Tracy Glen <span class="badge">3/10/10 · P2</span></div><div class="meta">SingleStone · Chief Client and Strategy Officer</div><div class="row"><span class="label">Why</span> Consultancy</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Vrinda Gupta <span class="badge">3/10/10 · P2</span></div><div class="meta">Sequin AI · CEO</div><div class="row"><span class="label">Why</span> AI vendor (governance panel)</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Not contacted</div><div class="row"><span class="label">Next</span> Low priority / peer hi only</div></div>
+<div class="card"><div class="name">Carl Briganti <span class="badge">2/10/10 · P2</span></div><div class="meta">CSS Impact · President and Founder</div><div class="row"><span class="label">Why</span> Collections tech vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Chris Ball <span class="badge">2/10/10 · P2</span></div><div class="meta">Belvista Software · President</div><div class="row"><span class="label">Why</span> Software vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Chris Carney <span class="badge">2/10/10 · P2</span></div><div class="meta">Mission Cloud · Lead AI Solutions Architect</div><div class="row"><span class="label">Why</span> Cloud SI</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Chris Witsil <span class="badge">2/10/10 · P2</span></div><div class="meta">Affirm · Sr. Product Manager</div><div class="row"><span class="label">Why</span> BNPL product — low letter-gate fit</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Cody Owens <span class="badge">2/10/10 · P2</span></div><div class="meta">Equabli · CEO</div><div class="row"><span class="label">Why</span> Vendor/fintech</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Dave Snow <span class="badge">2/10/10 · P2</span></div><div class="meta">Remitter · Group CEO</div><div class="row"><span class="label">Why</span> Payments/vendor adjacency</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">David Kullmann <span class="badge">2/10/10 · P2</span></div><div class="meta">Vertican Technologies · Dir. Technology Automation Shared Services</div><div class="row"><span class="label">Why</span> Sandbox peer vendor at Vertican = network hi only; auto-skip Calendly (Score 2).</div><div class="row"><span class="label">Intent</span> Vendor-pitch-to-Nathan</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Gerald Paulraj <span class="badge">2/10/10 · P2</span></div><div class="meta">StayAhead · CEO &amp;amp; Founder</div><div class="row"><span class="label">Why</span> Vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Jesse Bird <span class="badge">2/10/10 · P2</span></div><div class="meta">TCN · CTO and Co-founder</div><div class="row"><span class="label">Why</span> Dialer/comms vendor sponsor energy</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">John Fuller <span class="badge">2/10/10 · P2</span></div><div class="meta">Solvent+ · Chief Information Officer</div><div class="row"><span class="label">Why</span> Platform vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Joseph Finlayson <span class="badge">2/10/10 · P2</span></div><div class="meta">Enam Co. · Head of Forward Deployed</div><div class="row"><span class="label">Why</span> Vendor services</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Joshua March <span class="badge">2/10/10 · P2</span></div><div class="meta">Veritus · CEO</div><div class="row"><span class="label">Why</span> Vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Michael Walsh <span class="badge">2/10/10 · P2</span></div><div class="meta">EXL · Vice President - Sales Engineering and Client Success</div><div class="row"><span class="label">Why</span> Services vendor</div><div class="row"><span class="label">Intent</span> Vendor-pitch-to-Nathan</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Mitchell Keo <span class="badge">2/10/10 · P2</span></div><div class="meta">InterProse · AI Engineer</div><div class="row"><span class="label">Why</span> Sandbox peer</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Ryan Mack <span class="badge">2/10/10 · P2</span></div><div class="meta">Divinity Software Group · Founder and CEO</div><div class="row"><span class="label">Why</span> Sandbox regulated-data</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Scott Carter <span class="badge">2/10/10 · P2</span></div><div class="meta">Bounce AI · Chief Strategy Officer</div><div class="row"><span class="label">Why</span> Collections AI vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Sebastian Wigstrom <span class="badge">2/10/10 · P2</span></div><div class="meta">Clerkie · Co-founder and CTO</div><div class="row"><span class="label">Why</span> Fintech vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Shantanu Gangal <span class="badge">2/10/10 · P2</span></div><div class="meta">Prodigal · CEO</div><div class="row"><span class="label">Why</span> Competitive-adjacent AI collections vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Thomas Eaves <span class="badge">2/10/10 · P2</span></div><div class="meta">Gener8v · Chief Technology Officer &amp;amp; Co-Founder</div><div class="row"><span class="label">Why</span> Vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Zhiyao Pei <span class="badge">2/10/10 · P2</span></div><div class="meta">CreditBots &amp;amp; Partners · Founder</div><div class="row"><span class="label">Why</span> Vendor</div><div class="row"><span class="label">Intent</span> Mutual</div><div class="row"><span class="label">Status</span> Skip (≤2)</div><div class="row"><span class="label">Next</span> Skip / peer hi only if natural</div></div>
+<div class="card"><div class="name">Ana Reyes <span class="badge">1/10/10 · INB</span></div><div class="meta">Pronto Connects</div><div class="row"><span class="label">Why</span> SaaS vendor pitching TO Nathan (1).</div><div class="row"><span class="label">Intent</span> Vendor-pitch-to-Nathan</div><div class="row"><span class="label">Status</span> AUTO-SKIP</div><div class="row"><span class="label">Next</span> Do not contact</div></div>
+<div class="card"><div class="name">Bemnet Tesfaye <span class="badge">1/10/10 · INB</span></div><div class="meta">iTuring.ai (Booth 27) · Booth 27 AE</div><div class="row"><span class="label">Why</span> AUTO-SKIP** vendor pitch to Nathan (1).</div><div class="row"><span class="label">Intent</span> Vendor-pitch-to-Nathan</div><div class="row"><span class="label">Status</span> AUTO-SKIP** vendor pitch to Nathan (1).</div><div class="row"><span class="label">Next</span> Do not contact</div></div>
+<div class="card"><div class="name">Matt Scott <span class="badge">1/10/10 · INB</span></div><div class="meta">Emprise Technologies (Booth #6) · Booth #6</div><div class="row"><span class="label">Why</span> AUTO-SKIP** vendor pitch to Nathan (1).</div><div class="row"><span class="label">Intent</span> Vendor-pitch-to-Nathan</div><div class="row"><span class="label">Status</span> AUTO-SKIP** vendor pitch to Nathan (1).</div><div class="row"><span class="label">Next</span> Do not contact</div></div>
+<div class="card"><div class="name">Payment Savvy team <span class="badge">1/10/10 · INB</span></div><div class="meta">Payment Savvy · Booth 32</div><div class="row"><span class="label">Why</span> Vendor booth pitch TO Nathan (1).</div><div class="row"><span class="label">Intent</span> Vendor-pitch-to-Nathan</div><div class="row"><span class="label">Status</span> AUTO-SKIP</div><div class="row"><span class="label">Next</span> Do not contact</div></div>
+<div class="card"><div class="name">Nathan Platter <span class="badge">—/10 · SELF</span></div><div class="meta">Platter Analytics Co / SettleUp · Principal, Analytics &amp;amp; AI</div><div class="row"><span class="label">Why</span> Self — do not score as prospect.</div><div class="row"><span class="label">Intent</span> —</div><div class="row"><span class="label">Status</span> SELF</div><div class="row"><span class="label">Next</span> Own Lightning + Sandbox rooms</div></div>
+</div>
+  </div>
+  <footer>
+    Product: SettleUp Collections (Pilot $499/mo · Firm $1,299/mo · Letter Risk Audit $2,500). Not Marketplace Copilot.
+    Snapshot: <code>RADAR-SNAPSHOT.md</code>.
+  </footer>
+<script>
+(function() {
+  const table = document.getElementById("board");
+  const tbody = table.tBodies[0];
+  let sortCol = 3;
+  let sortAsc = false;
+
+  function cellSortVal(td, col) {
+    if (col === 3) {
+      const n = parseFloat(td.getAttribute("data-sort"));
+      return isNaN(n) ? -999 : n;
+    }
+    return (td.textContent || "").trim().toLowerCase();
+  }
+
+  function sortBy(col, asc) {
+    const rows = Array.from(tbody.rows);
+    rows.sort((a, b) => {
+      const av = cellSortVal(a.cells[col], col);
+      const bv = cellSortVal(b.cells[col], col);
+      let cmp = 0;
+      if (typeof av === "number" && typeof bv === "number") cmp = av - bv;
+      else cmp = String(av).localeCompare(String(bv));
+      if (cmp === 0 && col !== 0) {
+        cmp = a.cells[0].textContent.trim().toLowerCase()
+          .localeCompare(b.cells[0].textContent.trim().toLowerCase());
+      }
+      return asc ? cmp : -cmp;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+    document.querySelectorAll("th .sort-ind").forEach(el => el.textContent = "↕");
+    const th = table.tHead.rows[0].cells[col];
+    th.querySelector(".sort-ind").textContent = asc ? "▲" : "▼";
+  }
+
+  table.tHead.addEventListener("click", (e) => {
+    const th = e.target.closest("th");
+    if (!th) return;
+    const col = +th.dataset.col;
+    if (sortCol === col) sortAsc = !sortAsc;
+    else { sortCol = col; sortAsc = (col === 3 ? false : true); }
+    sortBy(sortCol, sortAsc);
+  });
+
+  window.filterRows = function() {
+    const q = (document.getElementById("q").value || "").toLowerCase();
+    const tier = document.getElementById("tier").value;
+    const inbound = document.getElementById("inbound").value;
+    const status = document.getElementById("status").value;
+    let vis = 0;
+    Array.from(tbody.rows).forEach(r => {
+      const text = r.textContent.toLowerCase();
+      const okQ = !q || text.includes(q);
+      const okT = !tier || r.dataset.tier === tier;
+      const okI = !inbound || r.dataset.inbound === inbound;
+      let okS = true;
+      if (status) {
+        const st = (r.dataset.status || "");
+        if (status === "sent") okS = st.startsWith("sent");
+        else if (status === "send now") okS = st.startsWith("send now");
+        else if (status === "hold") okS = st.startsWith("hold");
+        else if (status === "draft") okS = st.startsWith("draft");
+        else if (status === "skip") okS = st.includes("skip");
+        else if (status === "not contacted") okS = st === "not contacted";
+      }
+      const show = okQ && okT && okI && okS;
+      r.style.display = show ? "" : "none";
+      if (show) vis++;
+    });
+    document.getElementById("visible-count").textContent = vis;
+  };
+})();
+</script>
+</body>
+</html>
