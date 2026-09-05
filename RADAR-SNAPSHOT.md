@@ -1,9 +1,13 @@
-# Denver Radar Snapshot — 2026-09-05 ~3:15 PM CT
+# Denver Radar Snapshot — 2026-09-05 ~3:40 PM CT
 
-**Board:** [`SCOREBOARD.html`](./SCOREBOARD.html) (dark, sortable, filterable)  
-**Links:** [Speakers](https://www.getbrainstorming.com/#/speakers) · [Whova](https://whova.com/portal/webapp/wHydHQ8eVyTTnDjH7AKW/)  
-**Whova attendees:** not merged (login wall; no `WHOVA-ATTENDEES.md` / `attendees.csv` yet)  
+**Board:** [`SCOREBOARD.html`](./SCOREBOARD.html) (dark, sortable, filterable) + Pages  
+**Message bank:** [`MESSAGE-BANK.md`](./MESSAGE-BANK.md) (47 copy-paste) · Score 9 Whova stagger: [`whova/SCORE9-WHOVA-STAGGER.md`](./whova/SCORE9-WHOVA-STAGGER.md)  
+**Whova draft-save:** **NO** ([`whova/DRAFT-CAPABILITY.md`](./whova/DRAFT-CAPABILITY.md))  
+**Channel lock:** Whova DM primary · LinkedIn secondary **PAUSED** · Email tertiary **PAUSED**  
+**Whova Score 9 sends:** other executor (do not duplicate)  
+**Links:** [Speakers](https://www.getbrainstorming.com/#/speakers) · [Whova](https://whova.com/portal/webapp/wHydHQ8eVyTTnDjH7AKW/) · [Pages](https://nathanplatteruser.github.io/brainstorm-2026-radar/)  
 **Send rule:** auto-send **9–10 only**; **8/7/6 HOLD**; **≤2 skip**; **no Dell branding**
+
 
 ## Counts by outreach status
 

@@ -97,6 +97,7 @@
   .intent { white-space: nowrap; font-size: 0.78rem; }
   .status { max-width: 200px; font-size: 0.78rem; }
   .next { max-width: 180px; font-size: 0.78rem; color: var(--muted); }
+  .msg-copy { max-width: 220px; font-size: 0.72rem; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
   .st-sent { color: var(--yes); font-weight: 700; }
   .st-sendnow { color: var(--send); font-weight: 700; }
   .st-hold { color: var(--hold); font-weight: 600; }
@@ -200,6 +201,7 @@
         <th data-col="9">Inbound? <span class="sort-ind">↕</span></th>
         <th data-col="10">Outreach status <span class="sort-ind">↕</span></th>
         <th data-col="11">Next action <span class="sort-ind">↕</span></th>
+        <th data-col="12">Message (copy) <span class="sort-ind">↕</span></th>
       </tr>
     </thead>
     <tbody>
@@ -216,7 +218,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
 <td class="next">Send Whova DM now (autonomy 9–10)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Chris, Nathan Platter here (Platter Analytics / SettleUp). Heading to Brainstorm next …</td></tr>
 <tr class="score-9" data-score="9" data-tier="P0" data-name="dan medina" data-status="sent email 2026-09-05 ~3:13 pm ct" data-inbound="YES">
 <td class="name">Dan Medina</td>
 <td class="org">Harris &amp; Harris</td>
@@ -230,7 +232,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-sent">SENT Email 2026-09-05 ~3:13 PM CT</span></td>
 <td class="next">Wait for reply / Sandbox demo fail-closed</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-9" data-score="9" data-tier="P0" data-name="jim beck" data-status="send now (whova dm · score 9)" data-inbound="No">
 <td class="name">Jim Beck</td>
 <td class="org">MRS BPO</td>
@@ -244,7 +246,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
 <td class="next">Send Whova DM now (autonomy 9–10)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Jim, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstorm…</td></tr>
 <tr class="score-9" data-score="9" data-tier="P0" data-name="joann needleman" data-status="sent email 2026-09-05 ~3:13 pm ct" data-inbound="YES">
 <td class="name">Joann Needleman</td>
 <td class="org">Clark Hill PLC</td>
@@ -258,7 +260,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-sent">SENT Email 2026-09-05 ~3:13 PM CT</span></td>
 <td class="next">Wait for reply / Capstone handshake</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-9" data-score="9" data-tier="P0" data-name="juergen lunkwitz" data-status="sent linkedin 2026-09-05 ~2:21 pm ct" data-inbound="YES">
 <td class="name">Juergen Lunkwitz</td>
 <td class="org">Contract Callers</td>
@@ -272,7 +274,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-sent">SENT LinkedIn 2026-09-05 ~2:21 PM CT</span></td>
 <td class="next">Wait for reply / onsite Thu Automate tea</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-9" data-score="9" data-tier="P0" data-name="matthew maloney" data-status="send now (whova dm · score 9)" data-inbound="No">
 <td class="name">Matthew Maloney</td>
 <td class="org">First Financial Asset Management (FFAM360)</td>
@@ -286,7 +288,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
 <td class="next">Send Whova DM now (autonomy 9–10)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Matthew, Nathan Platter here (Platter Analytics / SettleUp). Excited for Brainstorm ne…</td></tr>
 <tr class="score-9" data-score="9" data-tier="P0" data-name="megan hebert" data-status="send now (whova dm · score 9)" data-inbound="No">
 <td class="name">Megan Hebert</td>
 <td class="org">Specialized Collection Systems, Inc. (SCS</td>
@@ -300,7 +302,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
 <td class="next">Send Whova DM now (autonomy 9–10)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Megan, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-9" data-score="9" data-tier="P0" data-name="regina slowey" data-status="send now (whova dm · score 9)" data-inbound="No">
 <td class="name">Regina Slowey</td>
 <td class="org">Barron &amp; Newburger</td>
@@ -314,7 +316,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-sendnow">SEND NOW (Whova DM · Score 9)</span></td>
 <td class="next">Send Whova DM now (autonomy 9–10)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Regina, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="ari derman" data-status="sent (score 8 prior; no further fu w/o nathan)" data-inbound="No">
 <td class="name">Ari Derman</td>
 <td class="org">Clark Hill</td>
@@ -328,7 +330,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-sent">SENT (Score 8 prior; no further FU w/o Nathan)</span></td>
 <td class="next">No further follow-up without Nathan; Dispute session handshake OK</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="cathy fellabaum" data-status="not contacted" data-inbound="No">
 <td class="name">Cathy Fellabaum</td>
 <td class="org">Harvest Strategy Group, Inc.</td>
@@ -342,7 +344,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Cathy, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P1" data-name="dennis barton" data-status="not contacted" data-inbound="No">
 <td class="name">Dennis Barton</td>
 <td class="org">Barton Law Group</td>
@@ -356,7 +358,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Dennis, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="heath morgan" data-status="hold 8 (whova dm draft)" data-inbound="No">
 <td class="name">Heath Morgan</td>
 <td class="org">Martin Golden Lyons Watts Morgan</td>
@@ -370,7 +372,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-hold">HOLD 8 (Whova DM draft)</span></td>
 <td class="next">Nathan greenlight before send</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Heath, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="jacqueline wilson" data-status="hold 8 (whova dm draft)" data-inbound="No">
 <td class="name">Jacqueline Wilson</td>
 <td class="org">U.S. Bank National Association</td>
@@ -384,7 +386,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-hold">HOLD 8 (Whova DM draft)</span></td>
 <td class="next">Nathan greenlight before send</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Jacqueline, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Bra…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P1" data-name="john erickson" data-status="not contacted" data-inbound="No">
 <td class="name">John Erickson</td>
 <td class="org">Credit Service International</td>
@@ -398,7 +400,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi John, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P1" data-name="jonathan goldberg" data-status="not contacted" data-inbound="No">
 <td class="name">Jonathan Goldberg</td>
 <td class="org">National Recovery Associates</td>
@@ -412,7 +414,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Jonathan, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brain…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="katherine o&#x27;brien" data-status="hold 8 (whova dm draft)" data-inbound="No">
 <td class="name">Katherine O&#x27;Brien</td>
 <td class="org">UHG</td>
@@ -426,7 +428,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-hold">HOLD 8 (Whova DM draft)</span></td>
 <td class="next">Nathan greenlight before send</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Katherine, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brai…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="kristyn leffler" data-status="not contacted" data-inbound="No">
 <td class="name">Kristyn Leffler</td>
 <td class="org">Resurgent Capital Services</td>
@@ -440,7 +442,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Kristyn, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brains…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="leslie bender" data-status="not contacted" data-inbound="No">
 <td class="name">Leslie Bender</td>
 <td class="org">Eversheds Sutherland</td>
@@ -454,7 +456,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Leslie, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="mike gibb" data-status="sent (score 8 prior; no further fu w/o nathan)" data-inbound="No">
 <td class="name">Mike Gibb</td>
 <td class="org">AccountsRecovery.net (Event Owner)</td>
@@ -468,7 +470,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-sent">SENT (Score 8 prior; no further FU w/o Nathan)</span></td>
 <td class="next">No further follow-up without Nathan; onsite intros ask OK</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="olga mironova" data-status="sent (score 8 prior; no further fu w/o nathan)" data-inbound="No">
 <td class="name">Olga Mironova</td>
 <td class="org">CCMR3</td>
@@ -482,7 +484,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-sent">SENT (Score 8 prior; no further FU w/o Nathan)</span></td>
 <td class="next">No further follow-up without Nathan; onsite Dispute co-speak OK</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-8" data-score="8" data-tier="P0" data-name="sara burton (woggerman)" data-status="hold 8 (whova dm draft)" data-inbound="No">
 <td class="name">Sara Burton (Woggerman)</td>
 <td class="org">ARM Compliance Business Solutions</td>
@@ -496,7 +498,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-hold">HOLD 8 (Whova DM draft)</span></td>
 <td class="next">Nathan greenlight before send</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Sara, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="alec tilley" data-status="not contacted" data-inbound="No">
 <td class="name">Alec Tilley</td>
 <td class="org">Goal Solutions</td>
@@ -510,7 +512,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Alec, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="andrew troiano" data-status="not contacted" data-inbound="No">
 <td class="name">Andrew Troiano</td>
 <td class="org">Capio Partners</td>
@@ -524,7 +526,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Andrew, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="aubrey caraway" data-status="not contacted" data-inbound="No">
 <td class="name">Aubrey Caraway</td>
 <td class="org">Prosper Marketplace</td>
@@ -538,7 +540,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Aubrey, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="brian mclellan" data-status="not contacted" data-inbound="No">
 <td class="name">Brian McLellan</td>
 <td class="org">Credit Solutions, LLC</td>
@@ -552,7 +554,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Brian, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="brian williams" data-status="not contacted" data-inbound="No">
 <td class="name">Brian Williams</td>
 <td class="org">American First Finance</td>
@@ -566,7 +568,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Brian, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="jeff gordy" data-status="not contacted" data-inbound="No">
 <td class="name">Jeff Gordy</td>
 <td class="org">FCR Services</td>
@@ -580,7 +582,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Jeff, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="jeremy ruth" data-status="not contacted" data-inbound="No">
 <td class="name">Jeremy Ruth</td>
 <td class="org">Arvest Bank</td>
@@ -594,7 +596,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Jeremy, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="lance phair" data-status="not contacted" data-inbound="No">
 <td class="name">Lance Phair</td>
 <td class="org">Phillips &amp; Cohen Associates</td>
@@ -608,7 +610,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Lance, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="michael koczwara" data-status="not contacted" data-inbound="No">
 <td class="name">Michael Koczwara</td>
 <td class="org">Scott and Associates</td>
@@ -622,7 +624,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Michael, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brains…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="robert sterett" data-status="not contacted" data-inbound="No">
 <td class="name">Robert Sterett</td>
 <td class="org">Revenue Enterprises</td>
@@ -636,7 +638,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Robert, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="solomon adote" data-status="not contacted" data-inbound="No">
 <td class="name">Solomon Adote</td>
 <td class="org">Phillips &amp; Cohen Associates</td>
@@ -650,7 +652,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Solomon, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brains…</td></tr>
 <tr class="score-7" data-score="7" data-tier="P1" data-name="tim smith" data-status="not contacted" data-inbound="No">
 <td class="name">Tim Smith</td>
 <td class="org">Firstsource</td>
@@ -664,7 +666,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Tim, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstorm…</td></tr>
 <tr class="score-6" data-score="6" data-tier="P0" data-name="abby hogan" data-status="not contacted" data-inbound="No">
 <td class="name">Abby Hogan</td>
 <td class="org">FairPlay.ai</td>
@@ -678,7 +680,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Abby, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor…</td></tr>
 <tr class="score-6" data-score="6" data-tier="P1" data-name="blair demarco-wettlaufer" data-status="not contacted" data-inbound="No">
 <td class="name">Blair Demarco-Wettlaufer</td>
 <td class="org">Kingston Data &amp; Credit</td>
@@ -692,7 +694,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Blair, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-6" data-score="6" data-tier="P1" data-name="garett johnson" data-status="not contacted" data-inbound="No">
 <td class="name">Garett Johnson</td>
 <td class="org">ARM Tech Advisors</td>
@@ -706,7 +708,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Garett, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-6" data-score="6" data-tier="P2" data-name="jacob georgeson" data-status="not contacted" data-inbound="No">
 <td class="name">Jacob Georgeson</td>
 <td class="org">Atlanticus Holdings</td>
@@ -720,7 +722,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Jacob, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-6" data-score="6" data-tier="P0" data-name="kelli van cleave" data-status="not contacted" data-inbound="No">
 <td class="name">Kelli Van Cleave</td>
 <td class="org">ACA International</td>
@@ -734,7 +736,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Kelli, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-6" data-score="6" data-tier="P1" data-name="val smith" data-status="not contacted" data-inbound="No">
 <td class="name">Val Smith</td>
 <td class="org">Ally</td>
@@ -748,7 +750,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Val, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstorm…</td></tr>
 <tr class="score-6" data-score="6" data-tier="P1" data-name="vance rodgers" data-status="not contacted" data-inbound="No">
 <td class="name">Vance Rodgers</td>
 <td class="org">Achieve</td>
@@ -762,7 +764,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Vance, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-6" data-score="6" data-tier="P1" data-name="yinze li" data-status="not contacted" data-inbound="No">
 <td class="name">Yinze Li</td>
 <td class="org">The Cascade365 Family of Companies</td>
@@ -776,7 +778,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">HOLD for Nathan — do not auto-send (8/7/6)</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Yinze, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-5" data-score="5" data-tier="P1" data-name="adrian tatsch" data-status="not contacted" data-inbound="No">
 <td class="name">Adrian Tatsch</td>
 <td class="org">Equifax</td>
@@ -790,7 +792,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Opportunistic onsite / draft if bandwidth</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Adrian, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-5" data-score="5" data-tier="P1" data-name="jack morris" data-status="not contacted" data-inbound="No">
 <td class="name">Jack Morris</td>
 <td class="org">TP Collections driven by Alliance One</td>
@@ -804,7 +806,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Opportunistic onsite / draft if bandwidth</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Jack, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor…</td></tr>
 <tr class="score-5" data-score="5" data-tier="P1" data-name="jeff wilser" data-status="not contacted" data-inbound="No">
 <td class="name">Jeff Wilser</td>
 <td class="org">The Curious Edge</td>
@@ -818,7 +820,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Opportunistic onsite / draft if bandwidth</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Jeff, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor…</td></tr>
 <tr class="score-5" data-score="5" data-tier="INB" data-name="kage carter" data-status="draft (triage)" data-inbound="YES">
 <td class="name">Kage Carter</td>
 <td class="org">(confirm org)</td>
@@ -832,7 +834,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-draft">DRAFT (triage)</span></td>
 <td class="next">Confirm org + attend before Calendly</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hey Kage, Nathan here (Platter Analytics / SettleUp). Thanks for reaching out on the advi…</td></tr>
 <tr class="score-5" data-score="5" data-tier="P1" data-name="katie zugsay" data-status="not contacted" data-inbound="No">
 <td class="name">Katie Zugsay</td>
 <td class="org">Finexus Insurance Agency</td>
@@ -846,7 +848,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Opportunistic onsite / draft if bandwidth</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Katie, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-5" data-score="5" data-tier="P1" data-name="lucas brown" data-status="not contacted" data-inbound="No">
 <td class="name">Lucas Brown</td>
 <td class="org">Saige Analytics</td>
@@ -860,7 +862,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Opportunistic onsite / draft if bandwidth</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Lucas, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-5" data-score="5" data-tier="P2" data-name="matt esterman" data-status="not contacted" data-inbound="No">
 <td class="name">Matt Esterman</td>
 <td class="org">Lendly</td>
@@ -874,7 +876,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Opportunistic onsite / draft if bandwidth</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Matt, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor…</td></tr>
 <tr class="score-5" data-score="5" data-tier="P1" data-name="rachel eaker" data-status="not contacted" data-inbound="No">
 <td class="name">Rachel Eaker</td>
 <td class="org">2nd Order Solutions (2OS)</td>
@@ -888,7 +890,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Opportunistic onsite / draft if bandwidth</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Rachel, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst…</td></tr>
 <tr class="score-5" data-score="5" data-tier="P1" data-name="ralph hall" data-status="not contacted" data-inbound="No">
 <td class="name">Ralph Hall</td>
 <td class="org">GVH Consulting</td>
@@ -902,7 +904,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Opportunistic onsite / draft if bandwidth</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Ralph, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-4" data-score="4" data-tier="P1" data-name="eric nevels" data-status="not contacted" data-inbound="No">
 <td class="name">Eric Nevels</td>
 <td class="org">TrueAccord</td>
@@ -916,7 +918,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Eric, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor…</td></tr>
 <tr class="score-4" data-score="4" data-tier="P2" data-name="john watson" data-status="not contacted" data-inbound="No">
 <td class="name">John Watson</td>
 <td class="org">Cedar Hill Advisors</td>
@@ -930,7 +932,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-4" data-score="4" data-tier="INB" data-name="katie bien" data-status="not contacted" data-inbound="No">
 <td class="name">Katie Bien</td>
 <td class="org">Clark Hill</td>
@@ -944,7 +946,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hi Katie, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto…</td></tr>
 <tr class="score-4" data-score="4" data-tier="P1" data-name="rodrigo fuentes" data-status="draft (linkedin peer; no buyer calendly)" data-inbound="YES">
 <td class="name">Rodrigo Fuentes</td>
 <td class="org">Kompato AI</td>
@@ -958,7 +960,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-draft">DRAFT (LinkedIn peer; no buyer Calendly)</span></td>
 <td class="next">Send peer intro-trade draft if wanted</td>
-</tr>
+<td class="msg-copy" title="See MESSAGE-BANK.md for full text">Hey Rodrigo, Nathan here (Platter Analytics / SettleUp). Looking forward to sharing the S…</td></tr>
 <tr class="score-3" data-score="3" data-tier="P2" data-name="ben schreiner" data-status="not contacted" data-inbound="No">
 <td class="name">Ben Schreiner</td>
 <td class="org">AWS</td>
@@ -972,7 +974,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-3" data-score="3" data-tier="P2" data-name="brett schklar" data-status="not contacted" data-inbound="No">
 <td class="name">Brett Schklar</td>
 <td class="org">AI First Leadership</td>
@@ -986,7 +988,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-3" data-score="3" data-tier="P2" data-name="dan yakimenko" data-status="not contacted" data-inbound="No">
 <td class="name">Dan Yakimenko</td>
 <td class="org">EXL</td>
@@ -1000,7 +1002,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-3" data-score="3" data-tier="P2" data-name="jeremy mapes" data-status="not contacted" data-inbound="No">
 <td class="name">Jeremy Mapes</td>
 <td class="org">Mapes LLC</td>
@@ -1014,7 +1016,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-3" data-score="3" data-tier="P2" data-name="kevin witherow" data-status="not contacted" data-inbound="No">
 <td class="name">Kevin Witherow</td>
 <td class="org">Solvent+</td>
@@ -1028,7 +1030,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-3" data-score="3" data-tier="P2" data-name="michael wentworth rogers" data-status="not contacted" data-inbound="No">
 <td class="name">Michael Wentworth Rogers</td>
 <td class="org">Newco 3DX Ventures</td>
@@ -1042,7 +1044,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-3" data-score="3" data-tier="P2" data-name="michael zhou" data-status="not contacted" data-inbound="No">
 <td class="name">Michael Zhou</td>
 <td class="org">InDebted</td>
@@ -1056,7 +1058,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-3" data-score="3" data-tier="P1" data-name="rob grafrath" data-status="auto-skip (membership ask)" data-inbound="YES">
 <td class="name">Rob Grafrath</td>
 <td class="org">Grafrath Consulting</td>
@@ -1070,7 +1072,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-skip">AUTO-SKIP (membership ask)</span></td>
 <td class="next">Soft network only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-3" data-score="3" data-tier="P2" data-name="tracy glen" data-status="not contacted" data-inbound="No">
 <td class="name">Tracy Glen</td>
 <td class="org">SingleStone</td>
@@ -1084,7 +1086,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-3" data-score="3" data-tier="P2" data-name="vrinda gupta" data-status="not contacted" data-inbound="No">
 <td class="name">Vrinda Gupta</td>
 <td class="org">Sequin AI</td>
@@ -1098,7 +1100,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-none">Not contacted</span></td>
 <td class="next">Low priority / peer hi only</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="carl briganti" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Carl Briganti</td>
 <td class="org">CSS Impact</td>
@@ -1112,7 +1114,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="chris ball" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Chris Ball</td>
 <td class="org">Belvista Software</td>
@@ -1126,7 +1128,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="chris carney" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Chris Carney</td>
 <td class="org">Mission Cloud</td>
@@ -1140,7 +1142,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="chris witsil" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Chris Witsil</td>
 <td class="org">Affirm</td>
@@ -1154,7 +1156,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="cody owens" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Cody Owens</td>
 <td class="org">Equabli</td>
@@ -1168,7 +1170,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="dave snow" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Dave Snow</td>
 <td class="org">Remitter</td>
@@ -1182,7 +1184,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="david kullmann" data-status="skip (≤2)" data-inbound="No">
 <td class="name">David Kullmann</td>
 <td class="org">Vertican Technologies</td>
@@ -1196,7 +1198,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="gerald paulraj" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Gerald Paulraj</td>
 <td class="org">StayAhead</td>
@@ -1210,7 +1212,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="jesse bird" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Jesse Bird</td>
 <td class="org">TCN</td>
@@ -1224,7 +1226,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="john fuller" data-status="skip (≤2)" data-inbound="No">
 <td class="name">John Fuller</td>
 <td class="org">Solvent+</td>
@@ -1238,7 +1240,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="joseph finlayson" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Joseph Finlayson</td>
 <td class="org">Enam Co.</td>
@@ -1252,7 +1254,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="joshua march" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Joshua March</td>
 <td class="org">Veritus</td>
@@ -1266,7 +1268,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="michael walsh" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Michael Walsh</td>
 <td class="org">EXL</td>
@@ -1280,7 +1282,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="mitchell keo" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Mitchell Keo</td>
 <td class="org">InterProse</td>
@@ -1294,7 +1296,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="ryan mack" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Ryan Mack</td>
 <td class="org">Divinity Software Group</td>
@@ -1308,7 +1310,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="scott carter" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Scott Carter</td>
 <td class="org">Bounce AI</td>
@@ -1322,7 +1324,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="sebastian wigstrom" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Sebastian Wigstrom</td>
 <td class="org">Clerkie</td>
@@ -1336,7 +1338,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="shantanu gangal" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Shantanu Gangal</td>
 <td class="org">Prodigal</td>
@@ -1350,7 +1352,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="thomas eaves" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Thomas Eaves</td>
 <td class="org">Gener8v</td>
@@ -1364,7 +1366,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-2" data-score="2" data-tier="P2" data-name="zhiyao pei" data-status="skip (≤2)" data-inbound="No">
 <td class="name">Zhiyao Pei</td>
 <td class="org">CreditBots &amp; Partners</td>
@@ -1378,7 +1380,7 @@
 <td class="inbound">No</td>
 <td class="status"><span class="st-skip">Skip (≤2)</span></td>
 <td class="next">Skip / peer hi only if natural</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-1" data-score="1" data-tier="INB" data-name="ana reyes" data-status="auto-skip" data-inbound="YES">
 <td class="name">Ana Reyes</td>
 <td class="org">Pronto Connects</td>
@@ -1392,7 +1394,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-skip">AUTO-SKIP</span></td>
 <td class="next">Do not contact</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-1" data-score="1" data-tier="INB" data-name="bemnet tesfaye" data-status="auto-skip" data-inbound="YES">
 <td class="name">Bemnet Tesfaye</td>
 <td class="org">iTuring.ai (Booth 27)</td>
@@ -1406,7 +1408,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-skip">AUTO-SKIP</span></td>
 <td class="next">Do not contact</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-1" data-score="1" data-tier="INB" data-name="matt scott" data-status="auto-skip" data-inbound="YES">
 <td class="name">Matt Scott</td>
 <td class="org">Emprise Technologies (Booth #6)</td>
@@ -1420,7 +1422,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-skip">AUTO-SKIP</span></td>
 <td class="next">Do not contact</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="score-1" data-score="1" data-tier="INB" data-name="payment savvy team" data-status="auto-skip" data-inbound="YES">
 <td class="name">Payment Savvy team</td>
 <td class="org">Payment Savvy</td>
@@ -1434,7 +1436,7 @@
 <td class="inbound"><span class="inbound-yes">YES</span></td>
 <td class="status"><span class="st-skip">AUTO-SKIP</span></td>
 <td class="next">Do not contact</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
 <tr class="row-self row-self" data-score="" data-tier="SELF" data-name="nathan platter" data-status="execute" data-inbound="—">
 <td class="name">Nathan Platter</td>
 <td class="org">Platter Analytics Co / SettleUp</td>
@@ -1448,7 +1450,7 @@
 <td class="inbound">—</td>
 <td class="status"><span class="st-none">Execute</span></td>
 <td class="next">Own Lightning + Sandbox rooms</td>
-</tr>
+<td class="msg-copy" style="color:var(--muted);">—</td></tr>
     </tbody>
   </table>
 <div class="cards" id="cards">
