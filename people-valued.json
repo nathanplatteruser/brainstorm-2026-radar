@@ -12,10 +12,10 @@
     "inbound": "No",
     "status": "SENT Whova DM 2026-09-05",
     "status_key": "sent",
-    "next": "Send Whova DM now (autonomy 9\u201310)",
+    "next": "Send Whova DM now (autonomy 9-10)",
     "message": "Hi Chris - owners who put agentic AI risk on a panel usually feel hallucination in their ...",
     "segment": "pilot_sub",
-    "segment_label": "Pilot\u2192Subscription prospect",
+    "segment_label": "Pilot to Subscription prospect",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
     "ceiling": 2997,
@@ -25,7 +25,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot_sub",
+        "ceiling": 2997,
+        "label": "Pilot to Subscription prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 5.0,
+    "priority": 0.045,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Dan Medina",
@@ -41,19 +60,38 @@
     "status": "SENT Whova DM 2026-09-05",
     "status_key": "sent whova dm",
     "next": "Wait for reply / Sandbox demo fail-closed",
-    "message": "\u2014",
+    "message": "-",
     "segment": "pilot_sub",
-    "segment_label": "Pilot\u2192Subscription prospect",
+    "segment_label": "Pilot to Subscription prospect",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
     "ceiling": 2997,
     "prob": 5,
     "weighted": 149.85,
     "value_estimated": true,
-    "value_notes": "Agency AI ops \u00b7 Whova+email SENT",
+    "value_notes": "Fast-win pilot_sub \u00b7 Agency AI ops \u00b7 Whova+email SENT",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot_sub",
+        "ceiling": 2997,
+        "label": "Pilot to Subscription prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.95,
+    "effective_prob": 5.0,
+    "priority": 0.0475,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jim Beck",
@@ -68,10 +106,10 @@
     "inbound": "No",
     "status": "SENT Whova DM 2026-09-05",
     "status_key": "sent",
-    "next": "Send Whova DM now (autonomy 9\u201310)",
+    "next": "Send Whova DM now (autonomy 9-10)",
     "message": "Hi Jim - the \"can't automate a broken system\" thread is my kind of conversation, especial...",
     "segment": "pilot_sub",
-    "segment_label": "Pilot\u2192Subscription prospect",
+    "segment_label": "Pilot to Subscription prospect",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
     "ceiling": 2997,
@@ -81,7 +119,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot_sub",
+        "ceiling": 2997,
+        "label": "Pilot to Subscription prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 5.0,
+    "priority": 0.045,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Joann Needleman",
@@ -97,19 +154,43 @@
     "status": "SENT Whova DM 2026-09-05",
     "status_key": "sent whova dm",
     "next": "Wait for reply / Capstone handshake",
-    "message": "\u2014",
-    "segment": "audit",
-    "segment_label": "Audit-only prospect",
+    "message": "-",
+    "segment": "advisory",
+    "segment_label": "Advisory/Sprint prospect + Audit-only prospect",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
-    "ceiling": 1050,
+    "ceiling": 8550,
     "prob": 5,
-    "weighted": 52.5,
+    "weighted": 427.5,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Bar-licensed. Advisory + audit; no referral commission.",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "advisory",
+        "ceiling": 7500,
+        "label": "Advisory/Sprint prospect"
+      },
+      {
+        "id": "audit",
+        "ceiling": 1050,
+        "label": "Audit-only prospect"
+      }
+    ],
+    "bar_licensed": true,
+    "is_multiplier": true,
+    "multiplier_note": "Attorney-reviewed unlock; Sandbox sponsor credibility",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 5.0,
+    "priority": 0.045,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Juergen Lunkwitz",
@@ -125,9 +206,9 @@
     "status": "SENT LinkedIn 2026-09-05 ~2:21 PM CT",
     "status_key": "sent linkedin 2026-09-05 ~2:21 pm ct",
     "next": "Wait for reply / onsite Thu Automate tea",
-    "message": "\u2014",
+    "message": "-",
     "segment": "pilot_sub",
-    "segment_label": "Pilot\u2192Subscription prospect",
+    "segment_label": "Pilot to Subscription prospect",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
     "ceiling": 2997,
@@ -137,7 +218,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot_sub",
+        "ceiling": 2997,
+        "label": "Pilot to Subscription prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 5.0,
+    "priority": 0.045,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Matthew Maloney",
@@ -152,10 +252,10 @@
     "inbound": "No",
     "status": "SENT Whova DM 2026-09-05",
     "status_key": "sent",
-    "next": "Send Whova DM now (autonomy 9\u201310)",
+    "next": "Send Whova DM now (autonomy 9-10)",
     "message": "Hi Matthew - from the debt-buyer seat, letter risk is both recovery friction and litigati...",
     "segment": "pilot_sub",
-    "segment_label": "Pilot\u2192Subscription prospect",
+    "segment_label": "Pilot to Subscription prospect",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
     "ceiling": 2997,
@@ -165,7 +265,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot_sub",
+        "ceiling": 2997,
+        "label": "Pilot to Subscription prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 5.0,
+    "priority": 0.045,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Megan Hebert",
@@ -180,10 +299,10 @@
     "inbound": "No",
     "status": "SENT Whova DM 2026-09-05",
     "status_key": "sent",
-    "next": "Send Whova DM now (autonomy 9\u201310)",
+    "next": "Send Whova DM now (autonomy 9-10)",
     "message": "Hi Megan - agency owners on the 90-day AI roadmap panel are usually the ones living the s...",
     "segment": "pilot_sub",
-    "segment_label": "Pilot\u2192Subscription prospect",
+    "segment_label": "Pilot to Subscription prospect",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
     "ceiling": 2997,
@@ -193,7 +312,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot_sub",
+        "ceiling": 2997,
+        "label": "Pilot to Subscription prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 5.0,
+    "priority": 0.045,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Regina Slowey",
@@ -208,20 +346,39 @@
     "inbound": "No",
     "status": "SENT Whova DM 2026-09-05",
     "status_key": "sent",
-    "next": "Send Whova DM now (autonomy 9\u201310)",
+    "next": "Send Whova DM now (autonomy 9-10)",
     "message": "Hi Regina - we have not met, but your Regulators panel seat is exactly where the letter-r...",
-    "segment": "pilot_sub",
-    "segment_label": "Pilot\u2192Subscription prospect",
+    "segment": "advisory",
+    "segment_label": "Advisory/Sprint prospect",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
-    "ceiling": 2997,
+    "ceiling": 7500,
     "prob": 5,
-    "weighted": 149.85,
+    "weighted": 375.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Bar-licensed. Advisory path only; multiplier beyond own weighted EV.",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "advisory",
+        "ceiling": 7500,
+        "label": "Advisory/Sprint prospect"
+      }
+    ],
+    "bar_licensed": true,
+    "is_multiplier": true,
+    "multiplier_note": "Firm leader + Regulators panel; attorney-reviewed unlock for agency clients",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.45,
+    "effective_prob": 5.0,
+    "priority": 0.0225,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Ari Derman",
@@ -237,19 +394,43 @@
     "status": "SENT (Score 8 prior; no further FU w/o Nathan)",
     "status_key": "sent (score 8 prior; no further fu w/o nathan)",
     "next": "No further follow-up without Nathan; Dispute session handshake OK",
-    "message": "\u2014",
-    "segment": "referral",
-    "segment_label": "Referral/Influence channel",
+    "message": "-",
+    "segment": "advisory",
+    "segment_label": "Advisory/Sprint prospect + Credibility / attorney-reviewed unlock",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
-    "ceiling": 0,
+    "ceiling": 7500,
     "prob": 5,
-    "weighted": 0.0,
+    "weighted": 375.0,
     "value_estimated": true,
-    "value_notes": "Personal = influence channel. Influence EV separate from hire value.",
-    "influence_referrals": 2,
-    "influence_avg_value": 2997,
-    "influence_ev": 5994
+    "value_notes": "Bar-licensed. No referral/commission EV. Advisory + credibility multiplier.",
+    "influence_referrals": null,
+    "influence_avg_value": null,
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "advisory",
+        "ceiling": 7500,
+        "label": "Advisory/Sprint prospect"
+      },
+      {
+        "id": "credibility",
+        "ceiling": null,
+        "label": "Credibility / attorney-reviewed unlock"
+      }
+    ],
+    "bar_licensed": true,
+    "is_multiplier": true,
+    "multiplier_note": "Attorney-reviewed unlock; credibility opens agency buyers beyond personal advisory $",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.45,
+    "effective_prob": 5.0,
+    "priority": 0.0225,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Cathy Fellabaum",
@@ -264,7 +445,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Cathy, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -277,7 +458,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Dennis Barton",
@@ -292,7 +492,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Dennis, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst\u2026",
     "segment": "audit",
     "segment_label": "Audit-only prospect",
@@ -302,10 +502,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "Law group owner \u00b7 Audit/Pilot influencer-buyer",
+    "value_notes": "Bar-licensed. Fast-win audit. No referral commission.",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "audit",
+        "ceiling": 1050,
+        "label": "Audit-only prospect"
+      }
+    ],
+    "bar_licensed": true,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.95,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Heath Morgan",
@@ -330,10 +549,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "Creditors-rights counsel \u00b7 Regulators panel",
+    "value_notes": "Bar-licensed. Fast-win audit. No referral commission.",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "audit",
+        "ceiling": 1050,
+        "label": "Audit-only prospect"
+      }
+    ],
+    "bar_licensed": true,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.95,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jacqueline Wilson",
@@ -358,10 +596,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Bar-licensed bank counsel. Enterprise cycle. Audit only; no referral $.",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "audit",
+        "ceiling": 1050,
+        "label": "Audit-only prospect"
+      }
+    ],
+    "bar_licensed": true,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "John Erickson",
@@ -372,11 +629,11 @@
     "tier": "P1",
     "tldr": "Agency CEO business-case seat (8).",
     "pros": "Agency CEO; business-case panel",
-    "cons": "Same as other agency CEOs \u2014 compete for time",
+    "cons": "Same as other agency CEOs - compete for time",
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi John, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -389,7 +646,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jonathan Goldberg",
@@ -404,7 +680,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Jonathan, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brain\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -417,7 +693,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Katherine O'Brien",
@@ -434,18 +729,37 @@
     "status_key": "hold 8 (whova dm draft)",
     "next": "Nathan greenlight before send",
     "message": "Hi Katherine, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brai\u2026",
-    "segment": "audit",
-    "segment_label": "Audit-only prospect",
+    "segment": "advisory",
+    "segment_label": "Advisory/Sprint prospect",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
-    "ceiling": 1050,
+    "ceiling": 7500,
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Bar-licensed GC/CCO. Enterprise cycle.",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "advisory",
+        "ceiling": 7500,
+        "label": "Advisory/Sprint prospect"
+      }
+    ],
+    "bar_licensed": true,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Kristyn Leffler",
@@ -460,7 +774,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Kristyn, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brains\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -470,10 +784,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Enterprise cycle (90-day prob capped).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Leslie Bender",
@@ -488,7 +821,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Leslie, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst\u2026",
     "segment": "audit",
     "segment_label": "Audit-only prospect",
@@ -498,10 +831,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Bar-licensed. Audit path; no referral commission.",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "audit",
+        "ceiling": 1050,
+        "label": "Audit-only prospect"
+      }
+    ],
+    "bar_licensed": true,
+    "is_multiplier": true,
+    "multiplier_note": "Big-law counsel who vets AI; unlock more than personal PO",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Mike Gibb",
@@ -510,14 +862,14 @@
     "score": 8,
     "intent": "Mutual",
     "tier": "P0",
-    "tldr": "Organizer leverage for intros/credibility, not a Pilot PO \u2014 still must-connect (8).",
+    "tldr": "Organizer leverage for intros/credibility, not a Pilot PO - still must-connect (8).",
     "pros": "Event owner; Digest + speaking + buyer intros; known partner path",
     "cons": "Not a direct SettleUp buyer; time is scarce",
     "inbound": "No",
     "status": "SENT (Score 8 prior; no further FU w/o Nathan)",
     "status_key": "sent (score 8 prior; no further fu w/o nathan)",
     "next": "No further follow-up without Nathan; onsite intros ask OK",
-    "message": "\u2014",
+    "message": "-",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
     "stage": "sent",
@@ -526,10 +878,29 @@
     "prob": 5,
     "weighted": 75.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Peer/vendor optionality (score 6-8 intent).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.9,
+    "effective_prob": 5.0,
+    "priority": 0.045,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Olga Mironova",
@@ -545,19 +916,38 @@
     "status": "SENT (Score 8 prior; no further FU w/o Nathan)",
     "status_key": "sent (score 8 prior; no further fu w/o nathan)",
     "next": "No further follow-up without Nathan; onsite Dispute co-speak OK",
-    "message": "\u2014",
+    "message": "-",
     "segment": "pilot_sub",
-    "segment_label": "Pilot\u2192Subscription prospect",
+    "segment_label": "Pilot to Subscription prospect",
     "stage": "sent",
     "stage_label": "Sent / awaiting reply",
     "ceiling": 2997,
     "prob": 5,
     "weighted": 149.85,
     "value_estimated": true,
-    "value_notes": "AVP Ops \u00b7 dispute sandbox \u00b7 email SENT",
+    "value_notes": "AVP Ops \u00b7 dispute sandbox \u00b7 high velocity pilot_sub",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot_sub",
+        "ceiling": 2997,
+        "label": "Pilot to Subscription prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.95,
+    "effective_prob": 5.0,
+    "priority": 0.0475,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Sara Burton (Woggerman)",
@@ -582,10 +972,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Peer/vendor optionality (score 6-8 intent).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Alec Tilley",
@@ -600,7 +1009,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Alec, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -613,7 +1022,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Andrew Troiano",
@@ -628,7 +1056,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Andrew, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -641,7 +1069,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Aubrey Caraway",
@@ -656,7 +1103,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Aubrey, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -669,7 +1116,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Brian McLellan",
@@ -684,7 +1150,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Brian, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -697,7 +1163,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Brian Williams",
@@ -712,7 +1197,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Brian, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -725,7 +1210,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jeff Gordy",
@@ -740,7 +1244,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Jeff, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -753,7 +1257,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jeremy Ruth",
@@ -768,7 +1291,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Jeremy, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -778,10 +1301,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Enterprise cycle (90-day prob capped).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Lance Phair",
@@ -796,7 +1338,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Lance, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -806,10 +1348,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Enterprise cycle (90-day prob capped).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Michael Koczwara",
@@ -824,7 +1385,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Michael, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brains\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -834,10 +1395,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "Agency automation/analytics \u00b7 HOLD connect",
+    "value_notes": "Fast-win pilot \u00b7 agency automation/analytics",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.95,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Robert Sterett",
@@ -852,7 +1432,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Robert, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -865,7 +1445,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Solomon Adote",
@@ -880,7 +1479,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Solomon, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brains\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -890,10 +1489,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Enterprise cycle (90-day prob capped).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Tim Smith",
@@ -908,7 +1526,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Tim, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstorm\u2026",
     "segment": "pilot",
     "segment_label": "Pilot prospect",
@@ -918,10 +1536,29 @@
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Enterprise cycle (90-day prob capped).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Abby Hogan",
@@ -930,26 +1567,45 @@
     "score": 6,
     "intent": "Mutual",
     "tier": "P0",
-    "tldr": "Regulatory ally, not employer buyer \u2014 influence only (6).",
+    "tldr": "Regulatory ally, not employer buyer - influence only (6).",
     "pros": "Regulators panel GC; Reg F/UDAAP ally language",
-    "cons": "FairPlay.ai vendor GC \u2014 not SettleUp end buyer",
+    "cons": "FairPlay.ai vendor GC - not SettleUp end buyer",
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Abby, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstor\u2026",
-    "segment": "audit",
-    "segment_label": "Audit-only prospect",
+    "segment": "advisory",
+    "segment_label": "Advisory/Sprint prospect",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
-    "ceiling": 1050,
+    "ceiling": 7500,
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Bar-licensed vendor GC. Advisory/optionality; no referral $.",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "advisory",
+        "ceiling": 7500,
+        "label": "Advisory/Sprint prospect"
+      }
+    ],
+    "bar_licensed": true,
+    "is_multiplier": true,
+    "multiplier_note": "Regulatory ally GC; credibility more than employer PO",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.45,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Blair Demarco-Wettlaufer",
@@ -958,13 +1614,13 @@
     "score": 6,
     "intent": "Nathan-consult",
     "tier": "P1",
-    "tldr": "ARM operator \u2014 moderate Pilot path (6).",
+    "tldr": "ARM operator - moderate Pilot path (6).",
     "pros": "Canadian ARM MD; change leadership",
     "cons": "Cross-border sales friction",
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Blair, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
@@ -972,12 +1628,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Peer/vendor optionality (score 6-8 intent).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Garett Johnson",
@@ -992,7 +1667,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Garett, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst\u2026",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
@@ -1000,12 +1675,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Peer/vendor optionality (score 6-8 intent).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jacob Georgeson",
@@ -1014,26 +1708,45 @@
     "score": 6,
     "intent": "Nathan-consult",
     "tier": "P2",
-    "tldr": "Creditor AI leader \u2014 lift if time (6).",
-    "pros": "Creditor Head of AI \u2014 real consult path",
+    "tldr": "Creditor AI leader - lift if time (6).",
+    "pros": "Creditor Head of AI - real consult path",
     "cons": "Listed P2 stretch; bandwidth",
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Jacob, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
-    "segment": "peer",
-    "segment_label": "Peer/Media/Non-monetary",
+    "segment": "pilot",
+    "segment_label": "Pilot prospect",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
-    "ceiling": 0,
+    "ceiling": 1500,
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Enterprise cycle \u00b7 first-party/creditor AI path",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Kelli Van Cleave",
@@ -1048,7 +1761,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Kelli, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
@@ -1056,12 +1769,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Peer/vendor optionality (score 6-8 intent).",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Val Smith",
@@ -1076,20 +1808,39 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Val, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainstorm\u2026",
-    "segment": "peer",
-    "segment_label": "Peer/Media/Non-monetary",
+    "segment": "pilot",
+    "segment_label": "Pilot prospect",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
-    "ceiling": 0,
+    "ceiling": 1500,
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Enterprise cycle \u00b7 first-party/creditor AI path",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Vance Rodgers",
@@ -1098,13 +1849,13 @@
     "score": 6,
     "intent": "Nathan-consult",
     "tier": "P1",
-    "tldr": "Ops AI transform \u2014 moderate letter fit (6).",
+    "tldr": "Ops AI transform - moderate letter fit (6).",
     "pros": "Achieve AI transformation director",
     "cons": "Achieve may be lending-adjacent",
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Vance, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
@@ -1112,12 +1863,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Yinze Li",
@@ -1132,7 +1902,7 @@
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
-    "next": "HOLD for Nathan \u2014 do not auto-send (8/7/6)",
+    "next": "HOLD for Nathan - do not auto-send (8/7/6)",
     "message": "Hi Yinze, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
@@ -1140,12 +1910,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Adrian Tatsch",
@@ -1162,18 +1951,37 @@
     "status_key": "not contacted",
     "next": "Opportunistic onsite / draft if bandwidth",
     "message": "Hi Adrian, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainst\u2026",
-    "segment": "peer",
-    "segment_label": "Peer/Media/Non-monetary",
+    "segment": "advisory",
+    "segment_label": "Advisory/Sprint prospect",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
-    "ceiling": 0,
+    "ceiling": 7500,
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Enterprise cycle \u00b7 Equifax keynote; optionality intros",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "advisory",
+        "ceiling": 7500,
+        "label": "Advisory/Sprint prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": true,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jack Morris",
@@ -1184,7 +1992,7 @@
     "tier": "P1",
     "tldr": "Eval panel seat, weak employer PO (5).",
     "pros": "Vendor-eval seat on vetting panel",
-    "cons": "VP BD \u2014 may be seller not buyer",
+    "cons": "VP BD - may be seller not buyer",
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
@@ -1196,12 +2004,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jeff Wilser",
@@ -1224,12 +2051,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Kage Carter",
@@ -1238,7 +2084,7 @@
     "score": 5,
     "intent": "Unknown",
     "tier": "INB",
-    "tldr": "Unknown intent \u2014 triage org/attend before Denver P0 or Calendly (5).",
+    "tldr": "Unknown intent - triage org/attend before Denver P0 or Calendly (5).",
     "pros": "Advisory/exit-strategy inquiry could be Nathan-consult path",
     "cons": "Org unconfirmed; Brainstorm attendance unclear",
     "inbound": "YES",
@@ -1252,12 +2098,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Katie Zugsay",
@@ -1266,7 +2131,7 @@
     "score": 5,
     "intent": "Mutual",
     "tier": "P1",
-    "tldr": "Adjacent risk CEO \u2014 opportunistic (5).",
+    "tldr": "Adjacent risk CEO - opportunistic (5).",
     "pros": "Compliance-approval panel; risk adjacency",
     "cons": "Insurance \u2260 letter-gate core",
     "inbound": "No",
@@ -1280,12 +2145,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Lucas Brown",
@@ -1313,7 +2197,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "audit",
+        "ceiling": 1050,
+        "label": "Audit-only prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.9,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Matt Esterman",
@@ -1336,12 +2239,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Rachel Eaker",
@@ -1364,12 +2286,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Ralph Hall",
@@ -1380,24 +2321,43 @@
     "tier": "P1",
     "tldr": "Sandbox influencer, not PO (5).",
     "pros": "Sandbox multi-session leader",
-    "cons": "Consultant \u2014 not employer buyer",
+    "cons": "Consultant - not employer buyer",
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Opportunistic onsite / draft if bandwidth",
     "message": "Hi Ralph, Nathan Platter here (Platter Analytics / SettleUp). Looking forward to Brainsto\u2026",
-    "segment": "peer",
-    "segment_label": "Peer/Media/Non-monetary",
+    "segment": "oem",
+    "segment_label": "OEM/White-label prospect",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
-    "ceiling": 0,
-    "prob": 0,
-    "weighted": 0.0,
+    "ceiling": 12000,
+    "prob": 20,
+    "weighted": 2400.0,
     "value_estimated": true,
-    "value_notes": "Sandbox influencer peer \u2014 relationship, not $",
+    "value_notes": "Silence does not auto-kill: stage_override keeps 20% manual. Technical/OEM path. Sandbox influencer.",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "oem",
+        "ceiling": 12000,
+        "label": "OEM/White-label prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": true,
+    "manual_prob": 20,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.4,
+    "effective_prob": 20.0,
+    "priority": 0.08,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Eric Nevels",
@@ -1406,7 +2366,7 @@
     "score": 4,
     "intent": "Mutual",
     "tier": "P1",
-    "tldr": "Cordial only \u2014 avoid pitch war (4).",
+    "tldr": "Cordial only - avoid pitch war (4).",
     "pros": "Change-leadership panel access",
     "cons": "TrueAccord competitive adjacency",
     "inbound": "No",
@@ -1420,12 +2380,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "John Watson",
@@ -1441,19 +2420,38 @@
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
+    "message": "-",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Katie Bien",
@@ -1476,12 +2474,31 @@
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Rodrigo Fuentes",
@@ -1490,7 +2507,7 @@
     "score": 4,
     "intent": "Mutual",
     "tier": "P1",
-    "tldr": "Peer-vendor mutual collab \u2014 intros only, not Calendly-as-buyer (4).",
+    "tldr": "Peer-vendor mutual collab - intros only, not Calendly-as-buyer (4).",
     "pros": "Warm thread; Sandbox peer; possible buyer intros",
     "cons": "Kompato = peer vendor, not SettleUp employer buyer",
     "inbound": "YES",
@@ -1498,18 +2515,37 @@
     "status_key": "draft (linkedin peer; no buyer calendly)",
     "next": "Send peer intro-trade draft if wanted",
     "message": "Hey Rodrigo, Nathan here (Platter Analytics / SettleUp). Looking forward to sharing the S\u2026",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Ben Schreiner",
@@ -1518,26 +2554,45 @@
     "score": 3,
     "intent": "Mutual",
     "tier": "P2",
-    "tldr": "Cloud influence; pilot-to-prod talk \u2014 not letter buyer",
-    "pros": "Cloud influence; pilot-to-prod talk \u2014 not letter buyer",
+    "tldr": "Cloud influence; pilot-to-prod talk - not letter buyer",
+    "pros": "Cloud influence; pilot-to-prod talk - not letter buyer",
     "cons": "Influence/peer more than employer PO",
     "inbound": "No",
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
+    "message": "-",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Brett Schklar",
@@ -1553,19 +2608,38 @@
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
+    "message": "-",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Dan Yakimenko",
@@ -1581,19 +2655,38 @@
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
+    "message": "-",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jeremy Mapes",
@@ -1609,19 +2702,38 @@
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
+    "message": "-",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Kevin Witherow",
@@ -1637,19 +2749,38 @@
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
+    "message": "-",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Michael Wentworth Rogers",
@@ -1665,19 +2796,38 @@
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
+    "message": "-",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Michael Zhou",
@@ -1693,19 +2843,38 @@
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
-    "segment": "peer",
-    "segment_label": "Peer/Media/Non-monetary",
+    "message": "-",
+    "segment": "pilot",
+    "segment_label": "Pilot prospect",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
-    "ceiling": 0,
+    "ceiling": 1500,
     "prob": 0,
     "weighted": 0.0,
     "value_estimated": true,
-    "value_notes": "",
+    "value_notes": "Enterprise cycle \u00b7 InDebted platform; optionality peer",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "pilot",
+        "ceiling": 1500,
+        "label": "Pilot prospect"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "enterprise",
+    "optionality": true,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Rob Grafrath",
@@ -1716,12 +2885,12 @@
     "tier": "P1",
     "tldr": "Membership pitch inbound; intros-only if natural (3).",
     "pros": "Industry builder; possible intros if reframed",
-    "cons": "Inbound = membership/booth \u2014 AUTO-SKIP send",
+    "cons": "Inbound = membership/booth - AUTO-SKIP send",
     "inbound": "YES",
     "status": "AUTO-SKIP (membership ask)",
     "status_key": "auto-skip (membership ask)",
     "next": "Soft network only if natural",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -1733,7 +2902,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Tracy Glen",
@@ -1749,19 +2937,38 @@
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
+    "message": "-",
     "segment": "peer",
     "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Vrinda Gupta",
@@ -1777,19 +2984,38 @@
     "status": "Not contacted",
     "status_key": "not contacted",
     "next": "Low priority / peer hi only",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Carl Briganti",
@@ -1805,19 +3031,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Chris Ball",
@@ -1833,19 +3078,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Chris Carney",
@@ -1861,7 +3125,7 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -1873,7 +3137,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Chris Witsil",
@@ -1882,14 +3165,14 @@
     "score": 2,
     "intent": "Mutual",
     "tier": "P2",
-    "tldr": "BNPL product \u2014 low letter-gate fit",
-    "pros": "BNPL product \u2014 low letter-gate fit",
+    "tldr": "BNPL product - low letter-gate fit",
+    "pros": "BNPL product - low letter-gate fit",
     "cons": "Low SettleUp buyer fit",
     "inbound": "No",
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -1901,7 +3184,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Cody Owens",
@@ -1917,19 +3219,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Dave Snow",
@@ -1945,19 +3266,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "David Kullmann",
@@ -1968,12 +3308,12 @@
     "tier": "P2",
     "tldr": "Sandbox peer vendor at Vertican = network hi only; auto-skip Calendly (Score 2).",
     "pros": "On Mike sandbox To:; possible buyer intros",
-    "cons": "Collections software/AI vendor peer \u2014 not SettleUp employer buyer",
+    "cons": "Collections software/AI vendor peer - not SettleUp employer buyer",
     "inbound": "No",
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -1985,7 +3325,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Gerald Paulraj",
@@ -2001,19 +3360,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Jesse Bird",
@@ -2029,19 +3407,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "John Fuller",
@@ -2057,7 +3454,7 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -2069,7 +3466,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Joseph Finlayson",
@@ -2085,7 +3501,7 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -2097,7 +3513,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Joshua March",
@@ -2113,19 +3548,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Michael Walsh",
@@ -2141,7 +3595,7 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -2153,7 +3607,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Mitchell Keo",
@@ -2169,7 +3642,7 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -2181,7 +3654,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Ryan Mack",
@@ -2197,19 +3689,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Scott Carter",
@@ -2225,19 +3736,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Sebastian Wigstrom",
@@ -2253,19 +3783,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Shantanu Gangal",
@@ -2281,19 +3830,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Thomas Eaves",
@@ -2309,19 +3877,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Zhiyao Pei",
@@ -2337,19 +3924,38 @@
     "status": "Skip (\u22642)",
     "status_key": "skip (\u22642)",
     "next": "Skip / peer hi only if natural",
-    "message": "\u2014",
-    "segment": "skip",
-    "segment_label": "Skip / non-buyer",
+    "message": "-",
+    "segment": "peer",
+    "segment_label": "Peer/Media/Non-monetary",
     "stage": "not_contacted",
     "stage_label": "Not contacted",
     "ceiling": 0,
     "prob": 0,
-    "weighted": 0.0,
+    "weighted": 0,
     "value_estimated": true,
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "peer",
+        "ceiling": 0,
+        "label": "Peer/Media/Non-monetary"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": true,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Ana Reyes",
@@ -2365,7 +3971,7 @@
     "status": "AUTO-SKIP",
     "status_key": "auto-skip",
     "next": "Do not contact",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -2377,7 +3983,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Bemnet Tesfaye",
@@ -2393,7 +4018,7 @@
     "status": "AUTO-SKIP",
     "status_key": "auto-skip",
     "next": "Do not contact",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -2405,7 +4030,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Matt Scott",
@@ -2421,7 +4065,7 @@
     "status": "AUTO-SKIP",
     "status_key": "auto-skip",
     "next": "Do not contact",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -2433,7 +4077,26 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Payment Savvy team",
@@ -2449,7 +4112,7 @@
     "status": "AUTO-SKIP",
     "status_key": "auto-skip",
     "next": "Do not contact",
-    "message": "\u2014",
+    "message": "-",
     "segment": "skip",
     "segment_label": "Skip / non-buyer",
     "stage": "not_contacted",
@@ -2461,23 +4124,42 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "skip",
+        "ceiling": 0,
+        "label": "Skip / non-buyer"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.2,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   },
   {
     "name": "Nathan Platter",
     "org": "Platter Analytics Co / SettleUp",
     "title": "Principal, Analytics & AI",
     "score": null,
-    "intent": "\u2014",
+    "intent": "-",
     "tier": "SELF",
-    "tldr": "Self \u2014 do not score as prospect.",
-    "pros": "Self (Lightning Sessions) \u2014 run demos, don\u2019t \u201cprospect\u201d self",
-    "cons": "\u2014",
+    "tldr": "Self - do not score as prospect.",
+    "pros": "Self (Lightning Sessions) - run demos, don\u2019t \u201cprospect\u201d self",
+    "cons": "-",
     "inbound": "\u2014",
     "status": "Execute",
     "status_key": "execute",
     "next": "Own Lightning + Sandbox rooms",
-    "message": "\u2014",
+    "message": "-",
     "segment": "self",
     "segment_label": "Self",
     "stage": "not_contacted",
@@ -2489,6 +4171,25 @@
     "value_notes": "",
     "influence_referrals": null,
     "influence_avg_value": null,
-    "influence_ev": null
+    "influence_ev": null,
+    "segments": [
+      {
+        "id": "self",
+        "ceiling": 0,
+        "label": "Self"
+      }
+    ],
+    "bar_licensed": false,
+    "is_multiplier": false,
+    "multiplier_note": "",
+    "stage_override": false,
+    "manual_prob": null,
+    "cycle": "standard",
+    "optionality": false,
+    "velocity": 0.35,
+    "effective_prob": 0.0,
+    "priority": 0.0,
+    "unquantified": false,
+    "decay": 1.0
   }
 ]
