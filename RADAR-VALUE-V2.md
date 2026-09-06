@@ -87,3 +87,10 @@ On 2026-09-06 decay = 1.0. At/after Oct 2 decay floors at 0.35. Shown as **Found
 | Enterprise orgs | cycle=enterprise |
 
 Do not wait on Whova attendee expansion; V2 ships on the current roster. Parent merges attendees later.
+
+
+## Hunting backfill (2026-09-06 CT)
+- Every imported Whova attendee scored (Score/Intent/Pros/Cons/TLDR/Tier/Segment).
+- **Hard rule:** every non-self person has `ceiling ≥ 10`. Pure placeholders use segment `floor` + badge **Floor $10**.
+- Peers/skips formerly at $0 are floored to $10 (optionality flag may remain).
+- See `HUNTING-BACKFILL.md` for Score≥5 imports Nathan should not overlook onsite.
