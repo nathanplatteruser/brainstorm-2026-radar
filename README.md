@@ -1,8 +1,11 @@
-# Brainstorm 2026 Denver — SettleUp Radar
+# Taming the Dispute Queue · session resources
 
-Mobile-friendly scoreboard for Nathan Platter (Brainstorm Sep 9–11, 2026).
+Public landing page for Brainstorm 2026 Thursday 8:30am.
 
-## Open on phone
-Use GitHub Pages / raw HTML after publish, or open `index.html`.
+Live: https://nathanplatteruser.github.io/brainstorm-2026-radar/
 
-**Send rule:** auto-send Score 9–10 only. Hold 8/7/6. Skip ≤2. No Dell branding.
+Points to:
+- https://nathanplatteruser.github.io/dispute-agent-demo/DEMO-OUTPUT.html
+- https://github.com/nathanplatteruser/dispute-agent-demo
+
+Internal targeting notes are not published here.
